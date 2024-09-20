@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +24,20 @@ namespace Dialogue
 
         private DialogueSequencer _dialogueSequencer;
         private Dialogue _currentDialogue;
+        
+        public static DialogueManager Instance;
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
 
         private void Start()
         {
