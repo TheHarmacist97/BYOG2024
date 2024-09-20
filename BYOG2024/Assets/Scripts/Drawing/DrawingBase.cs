@@ -10,44 +10,88 @@ namespace Drawing
         [SerializeField]
         private LayerMask _layerMask;
 
-        private Material _drawingMaterial;
-
         private CustomRenderTexture _customRenderTexture;
         private Renderer _renderer;
+        private Material _drawingMaterial;
+
+        private static readonly int RenderTexture = Shader.PropertyToID("_Texture");
+        private static readonly int BrushColor = Shader.PropertyToID("_BrushColor");
+        private static readonly int BrushCoord = Shader.PropertyToID("_BrushCoord");
+
+        private RaycastHit[] _raycastHits;
+        private bool _isDrawing;
+        private float _timer;
+
 
         private void Start()
         {
             _renderer = GetComponent<Renderer>();
             _drawingMaterial = _renderer.material;
-            _customRenderTexture =
-                new CustomRenderTexture(32, 32, RenderTextureFormat.ARGBInt, RenderTextureReadWrite.Linear);
-            _customRenderTexture.filterMode = FilterMode.Point;
-            _customRenderTexture.updateMode = CustomRenderTextureUpdateMode.OnDemand;
-            _customRenderTexture.initializationSource = CustomRenderTextureInitializationSource.Material;
-            _customRenderTexture.initializationMaterial = _drawingMaterial;
-            _customRenderTexture.doubleBuffered = true;
-            _drawingMaterial.SetTexture("_Texture", _customRenderTexture);
-            _drawingMaterial.SetColor("_BrushColor", Color.red);
+            _colourPalette.OnColourChanged += OnColourChanged;
+            _raycastHits = new RaycastHit[1];
+        }
+
+        private void OnDestroy()
+        {
+            _colourPalette.OnColourChanged -= OnColourChanged;
         }
 
         private void Update()
         {
-            //Draw
-            var ray = Camera.main!.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out var hit, 1f, _layerMask,
-                    QueryTriggerInteraction.Ignore))
-            {
-                var uv = hit.textureCoord;
-                if (uv.x < 0 || uv.x > 1 || uv.y < 0 || uv.y > 1)
-                    return;
+            if (!_isDrawing) return;
+            Draw();
+        }
 
-                if (Input.GetMouseButton(0))
-                    _customRenderTexture.Initialize();
-                Debug.Log("Rendering at: " + uv);
-                _drawingMaterial.SetVector("_BrushCoord", new Vector4(uv.x, uv.y, 0, 0));
-                if (Input.GetMouseButton(0))
-                    _customRenderTexture.Update();
+        private void Draw()
+        {
+            var ray = Camera.main!.ScreenPointToRay(Input.mousePosition);
+            if (!(Physics.RaycastNonAlloc(ray, _raycastHits, 1f, _layerMask,
+                    QueryTriggerInteraction.Ignore) > 0)) return;
+            var uv = _raycastHits[0].textureCoord;
+            if (uv.x < 0 || uv.x > 1 || uv.y < 0 || uv.y > 1)
+                return;
+
+            if (Input.GetMouseButton(0))
+                _customRenderTexture.Initialize();
+            _drawingMaterial.SetVector(BrushCoord, new Vector4(uv.x, uv.y, 0, 0));
+            if (Input.GetMouseButton(0))
+            {
+                _customRenderTexture.Update();
+                _timer += Time.deltaTime;
             }
+        }
+
+        public void StartNewDrawing()
+        {
+            _timer = 0;
+            _customRenderTexture =
+                new CustomRenderTexture(64, 64, RenderTextureFormat.ARGBInt, RenderTextureReadWrite.Linear)
+                {
+                    filterMode = FilterMode.Point,
+                    updateMode = CustomRenderTextureUpdateMode.OnDemand,
+                    initializationSource = CustomRenderTextureInitializationSource.Material,
+                    initializationMaterial = _drawingMaterial,
+                    doubleBuffered = true
+                };
+
+            _drawingMaterial.SetTexture(RenderTexture, _customRenderTexture);
+            _drawingMaterial.SetColor(BrushColor, _colourPalette.ActiveColour);
+        }
+
+        public RenderTexture GetDrawing()
+        {
+            return _customRenderTexture;
+        }
+
+        public float GetDrawTime()
+        {
+            return _timer;
+        }
+
+    private void OnColourChanged(Color colour)
+        {
+            Debug.Log("Colour changed to: " + colour);
+            _drawingMaterial.SetColor(BrushColor, colour);
         }
     }
 }
