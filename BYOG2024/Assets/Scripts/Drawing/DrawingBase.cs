@@ -25,10 +25,15 @@ namespace Drawing
 
         private void Start()
         {
-            _renderer = GetComponent<Renderer>();
-            _drawingMaterial = _renderer.material;
+            CacheVariables();
             _colourPalette.OnColourChanged += OnColourChanged;
-            _raycastHits = new RaycastHit[1];
+        }
+
+        private void CacheVariables()
+        {
+            _renderer ??= GetComponent<Renderer>();
+            _drawingMaterial ??= _renderer.material;
+            _raycastHits ??= new RaycastHit[1];
         }
 
         private void OnDestroy()
@@ -66,10 +71,17 @@ namespace Drawing
             _isDrawing = false;
             _timer = 0f;
         }
+
+        public void SetBrushSize(float size)
+        {
+            _drawingMaterial.SetFloat("_BrushSize", size);
+        }
         public void StartNewDrawing()
         {
             _timer = 0;
             _isDrawing = true;
+            if(!_drawingMaterial)
+                CacheVariables();
             _customRenderTexture =
                 new CustomRenderTexture(64, 64, RenderTextureFormat.ARGBInt, RenderTextureReadWrite.Linear)
                 {

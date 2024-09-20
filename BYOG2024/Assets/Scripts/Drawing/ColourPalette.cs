@@ -49,7 +49,6 @@ namespace Drawing
 
         private void SetColour(int index)
         {
-            Debug.Log("Index is: "+index);
             ActiveColour = _colourConfig.Colours[index];
         }
     }
