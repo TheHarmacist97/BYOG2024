@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class ProgrammingQTE : QuickTimeEvent
 {
-    
+    protected override void Initialize()
+    {
+        
+    }
 
     protected override void OnComplete()
     {

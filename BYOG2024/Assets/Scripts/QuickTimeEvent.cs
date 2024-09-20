@@ -38,6 +38,7 @@ public abstract class QuickTimeEvent : MonoBehaviour
 
     private void StartQTE()
     {
+        Initialize();
         _isComplete = false;
         _isPaused = false;
         _timeLeft = totalAllowedTime;
@@ -45,6 +46,9 @@ public abstract class QuickTimeEvent : MonoBehaviour
         _failedActionCount = 0;
         uiPanel.SetActive(true);
     }
+
+    // Override in child class to initialize QTE
+    protected abstract void Initialize();
 
     private void QTEComplete()
     {
