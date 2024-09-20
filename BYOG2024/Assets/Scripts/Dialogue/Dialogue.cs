@@ -36,6 +36,7 @@ namespace Dialogue
             State = DialogueState.Playing;
             speaker.SetText(dialogue.speaker);
             typewriterByWord.ShowText(dialogue.dialogueText);
+            canvasGroup.DOKill();
             canvasGroup.DOFade(1, 1f);
         }
 
@@ -48,6 +49,7 @@ namespace Dialogue
         public void FadeOutDialogue()
         {
             State = DialogueState.Idle;
+            canvasGroup.DOKill();
             canvasGroup.DOFade(0, .5f);
         }
 
