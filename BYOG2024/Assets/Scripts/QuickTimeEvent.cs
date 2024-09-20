@@ -28,6 +28,8 @@ public abstract class QuickTimeEvent : MonoBehaviour
     private void Update()
     {
         if (_isPaused || _isComplete) return;
+
+        OnUpdate();
         
         _timeLeft -= Time.deltaTime;
         if (_timeLeft <= 0f)
@@ -35,6 +37,8 @@ public abstract class QuickTimeEvent : MonoBehaviour
             QTEComplete();
         }
     }
+
+    protected abstract void OnUpdate();
 
     private void StartQTE()
     {
