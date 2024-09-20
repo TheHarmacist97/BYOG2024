@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 namespace Pacman
 {
-	public class PacmanMovement : MonoBehaviour
+	public class PacmanLogic : MonoBehaviour
 	{
 		private enum MoveDir
 		{
@@ -11,6 +11,7 @@ namespace Pacman
 			Horizontal,
 		}
 
+		[SerializeField] private bool _isAlive = true;
 		[SerializeField] private float _wallCheckOffset; 
 		[SerializeField] private LayerMask _wallLayer;
 		[SerializeField] private float _speed = 5f;
@@ -20,9 +21,15 @@ namespace Pacman
 		private bool _yInput, _yPos, _yNeg;
 	
 		private Vector2 _dir;
+		private void Awake()
+		{
+			_isAlive = true;
+		}
 		// Update is called once per frame
 		private void Update()
 		{
+			if(!_isAlive) return;
+			
 			_xNeg = Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A);
 			_xPos = Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D);
 			_xInput = _xNeg || _xPos;
@@ -49,6 +56,20 @@ namespace Pacman
 		
 		private void OnCollisionEnter2D(Collision2D other)
 		{
+			OnCollisionWithWall(other);
+			OnCollisionWithGhost(other);
+		}
+		private void OnCollisionWithGhost(Collision2D other)
+		{
+			if (other.gameObject.layer != LayerMask.NameToLayer("Ghost"))
+			{
+				return;
+			}
+			_isAlive = false;
+		}
+
+		private void OnCollisionWithWall(Collision2D other)
+		{
 			if (other.gameObject.layer != LayerMask.NameToLayer("Walls"))
 			{
 				return;
@@ -70,6 +91,10 @@ namespace Pacman
 					break;
 				}
 			}
+		}
+		public void KillSelf()
+		{
+			_isAlive = false;
 		}
 	}
 }

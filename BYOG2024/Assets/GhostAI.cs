@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Pacman;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 public class GhostAI : MonoBehaviour
@@ -96,5 +98,20 @@ public class GhostAI : MonoBehaviour
 		Gizmos.DrawLine(transform.position, transform.position + Vector3.down * _blockCheckDistance);
 		Gizmos.DrawLine(transform.position, transform.position + Vector3.left * _blockCheckDistance);
 		Gizmos.DrawLine(transform.position, transform.position + Vector3.right * _blockCheckDistance);
+	}
+	
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.gameObject.layer == LayerMask.NameToLayer("Pacman"))
+		{
+			if (other.TryGetComponent(out PacmanLogic pacman))
+			{
+				//Stop all ghosts here as well
+				
+				pacman.KillSelf();
+				enabled = false;
+			}
+			
+		}
 	}
 }
