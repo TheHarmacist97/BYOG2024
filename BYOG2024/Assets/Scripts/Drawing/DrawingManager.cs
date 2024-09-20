@@ -89,9 +89,5 @@ public class DrawingManager : MonoBehaviour
             _currentDrawingIndex++;
             StartDrawing();
         }
-        else
-        {
-            SceneManager.LoadScene(3);
-        }
     }
 }
