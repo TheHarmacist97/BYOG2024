@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public enum PictureIDs
@@ -19,5 +20,5 @@ public class PictureConfig : ScriptableObject
     [TextArea]
     public string description;
 
-    public Vector2 canvasSize;
+    public int2 canvasSize;
 }

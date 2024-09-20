@@ -2,7 +2,6 @@ using System;
 using Drawing;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class DrawingManager : MonoBehaviour
 {
@@ -24,8 +23,8 @@ public class DrawingManager : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI _titleText;
-    
-    private int _maxDrawings = 5; 
+
+    private int _maxDrawings = 5;
     private int _currentDrawingIndex;
 
     public static DrawingManager Instance;
@@ -48,19 +47,11 @@ public class DrawingManager : MonoBehaviour
         StartDrawing();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space)&&_currentDrawingIndex<_maxDrawings)
-        {
-            StartDrawing();
-        }
-    }
-
     public void StartDrawing()
     {
-        _descriptionText.SetText(_pictureConfigs[_currentDrawingIndex].description);;
+        _descriptionText.SetText(_pictureConfigs[_currentDrawingIndex].description);
         _titleText.SetText(_pictureConfigs[_currentDrawingIndex].pictureName);
-        _drawingBase.StartNewDrawing();
+        _drawingBase.StartNewDrawing(_pictureConfigs[_currentDrawingIndex].canvasSize);
         Debug.Log("Started New Drawing");
     }
 
@@ -69,10 +60,12 @@ public class DrawingManager : MonoBehaviour
         Debug.Log("Clearing Drawing");
         _drawingBase.StartNewDrawing();
     }
+
     public void SetBrushSize(int sizeIndex)
     {
         _drawingBase.SetBrushSize(_brushSizes[sizeIndex]);
-    } 
+    }
+
     public void ValidateDrawing()
     {
         var drawTime = _drawingBase.GetDrawTime();
@@ -81,6 +74,7 @@ public class DrawingManager : MonoBehaviour
             Debug.Log("Drawing is not finished");
             return;
         }
+
         _drawingBase.StopDrawing();
         PacmanConfig.SetDrawing(_pictureConfigs[_currentDrawingIndex].pictureID, _drawingBase.GetDrawing());
         if (_currentDrawingIndex < _maxDrawings - 1)

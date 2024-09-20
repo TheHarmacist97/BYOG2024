@@ -88,11 +88,12 @@ namespace Drawing
         {
             _drawingMaterial.SetFloat(BrushSize, size);
         }
+
         public void StartNewDrawing(int2 size = default)
         {
             _timer = 0;
             _isDrawing = true;
-            if(!_drawingMaterial)
+            if (!_drawingMaterial)
                 CacheVariables();
             if (size.Equals(default))
             {
@@ -103,6 +104,7 @@ namespace Drawing
                 _currentDrawingSize = size;
                 UpdateScale(_currentDrawingSize);
             }
+
             _customRenderTexture =
                 new CustomRenderTexture(size.x, size.y, RenderTextureFormat.ARGBInt, RenderTextureReadWrite.Linear)
                 {
@@ -119,8 +121,11 @@ namespace Drawing
 
         private void UpdateScale(int2 currentSize)
         {
-            var scale = new Vector2(_drawingSize.x / currentSize.x, _drawingSize.y / currentSize.y);
-            var newSize = new Vector3(scale.x, scale.y, 1f);
+            var scaleX = Mathf.InverseLerp(_drawingScale.x, _drawingScale.y, currentSize.x);
+            var scaleY = Mathf.InverseLerp(_drawingScale.x, _drawingScale.y, currentSize.y);
+            scaleX = Mathf.Lerp(_drawingSize.x, _drawingSize.y, scaleX);
+            scaleY = Mathf.Lerp(_drawingSize.x, _drawingSize.y, scaleY);
+            var newSize = new Vector3(scaleX, scaleY, 1f);
             transform.localScale = newSize;
             _backgroundTransform.localScale = newSize;
         }
