@@ -12,22 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eff497e54eee49939a3c7bfce51b6fe6, type: 3}
   m_Name: WriterLeft
   m_EditorClassIdentifier: 
-  conversationID: 
+  conversationID: WriterLeft
   dialogues:
+  - speaker: Writer
+    dialogueText: '(In the distance..)
+
+      They asked me to write 100 pages of
+      backstory for a door..and it doesn''t even open!'
+    orientation: 0
   - speaker: PM
     dialogueText: '(In the distance..)
 
-      What do you mean you have a family,
-      WE are you family!!'
+      Our players suggested that lore is
+      very important to them!'
     orientation: 0
   - speaker: PM
-    dialogueText: Uhm..yeah..well.. So our programmers aren't with us anymore..
+    dialogueText: Oh well.. our writers left
     orientation: 0
   - speaker: PM
-    dialogueText: ..for personal reasons
-    orientation: 0
-  - speaker: PM
-    dialogueText: Can you fill in for them and write some code?
+    dialogueText: 'Please finish the '
     orientation: 0
   - speaker: PM
     dialogueText: ..wasn't a question btw, I want it done yesterday!

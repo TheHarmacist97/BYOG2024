@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eff497e54eee49939a3c7bfce51b6fe6, type: 3}
   m_Name: ProgrammerLeft
   m_EditorClassIdentifier: 
-  conversationID: 
+  conversationID: ProgrammerLeft
   dialogues:
   - speaker: PM
     dialogueText: '(In the distance..)

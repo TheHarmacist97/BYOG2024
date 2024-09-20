@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,6 +27,8 @@ namespace Dialogue
         private Dialogue _currentDialogue;
         
         public static DialogueManager Instance;
+        
+        public event Action<string> OnDialogueEnded;
 
         private void Awake()
         {
@@ -61,6 +64,12 @@ namespace Dialogue
             {
                 Debug.LogError($"Conversation with key {conversationKey} not found");
             }
+        }
+
+        public void EndConversation(string conversationKey)
+        {
+            if(OnDialogueEnded != null) 
+                OnDialogueEnded(conversationKey);
         }
 
         private void Update()

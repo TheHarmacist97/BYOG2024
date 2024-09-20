@@ -19,6 +19,8 @@ public class DrawingManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField]
+    private GameObject _drawingUI;
+    [SerializeField]
     private TextMeshProUGUI _descriptionText;
 
     [SerializeField]
@@ -83,5 +85,17 @@ public class DrawingManager : MonoBehaviour
             _currentDrawingIndex++;
             StartDrawing();
         }
+    }
+
+    public void PauseDrawing()
+    {
+        _drawingUI.SetActive(false);
+        _drawingBase.PauseDrawing();
+    }
+
+    public void ResumeDrawing()
+    {
+        _drawingUI.SetActive(true);
+        _drawingBase.ResumeDrawing();
     }
 }

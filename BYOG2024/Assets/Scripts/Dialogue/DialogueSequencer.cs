@@ -78,6 +78,7 @@ namespace Dialogue
             if (_currentDialogueIndex >= _conversation.dialogues.Length)
             {
                 //Notify the DialogueManager that the conversation has ended
+                _dialogueManager.EndConversation(_conversation.conversationID);
                 _state = ConversationState.Completed;
                 return;
             }

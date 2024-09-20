@@ -78,6 +78,16 @@ namespace Drawing
             }
         }
 
+        public void PauseDrawing()
+        {
+            _isDrawing = false;
+        }
+
+        public void ResumeDrawing()
+        {
+            _isDrawing = true;
+        }
+        
         public void StopDrawing()
         {
             _isDrawing = false;
