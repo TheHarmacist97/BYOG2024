@@ -67,9 +67,6 @@ public class GhostAI : MonoBehaviour
 		}
 		
 		_direction = availableDirections[Random.Range(0, availableDirections.Count)];
-		
-		
-		Debug.Log(_direction);
 	}
 
 	private void CheckForAvailablePaths()
