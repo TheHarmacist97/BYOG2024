@@ -1,19 +1,27 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Dialogue;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] 
-    private QuickTimeEvent qte;
+    [System.Serializable]
+    public class QTEBlock
+    {
+        public Conversation conversation;
+        public QuickTimeEvent qte;
+    }
+    [SerializeField]
+    private QTEBlock[] departmentLeavingQTEs;
 
     private void Start()
     {
-        qte.StartQTE();
-        qte.onQTECompleted += () =>
-        {
-            Debug.Log("COMPLETED");
-        };
+        DrawingManager.Instance.DrawingCompleted += OnDrawingCompleted;
+    }
+    
+    void OnDrawingCompleted(int index)
+    {
+        
     }
 }
