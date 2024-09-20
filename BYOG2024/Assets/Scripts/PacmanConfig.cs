@@ -20,7 +20,10 @@ public static class PacmanConfig
             return null;
         }
 
-        Texture2D tex = new Texture2D(rTex.width, rTex.height, TextureFormat.RGBA32, false);
+        Texture2D tex = new Texture2D(rTex.width, rTex.height, TextureFormat.RGBA32, false)
+        {
+            filterMode = FilterMode.Point
+        };
         var oldRT = RenderTexture.active;
         RenderTexture.active = rTex;
 
