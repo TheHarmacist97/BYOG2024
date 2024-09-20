@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc5566a245074fa18eb0c62855ddac4f, type: 3}
   m_Name: Writing QTE Data Holder
   m_EditorClassIdentifier: 
-  Questions: []
+  Questions:
+  - question: The Player comes from the vast valley of...
+    answer: dfdf
+  - question: Name the enemies
+    answer: dfd
+  - question: Name the game!
+    answer: dfdf
