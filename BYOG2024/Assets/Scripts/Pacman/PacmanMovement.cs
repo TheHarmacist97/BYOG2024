@@ -46,22 +46,7 @@ namespace Pacman
 			if(_currentMoveDir != MoveDir.None)
 				transform.Translate(_dir * (_speed * Time.deltaTime), Space.World);
 		}
-
-		private void FixedUpdate()
-		{
-			// Ray2D upRay = new(transform.position, Vector3.up);
-			// Ray2D downRay = new(transform.position, Vector3.down);
-			// Ray2D leftRay = new(transform.position, Vector3.left);
-			// Ray2D rightRay = new(transform.position, Vector3.right);
-			
-			
-		}
-
-		private bool CheckRay(Ray2D ray)
-		{
-			return Physics2D.Raycast(ray.origin, ray.direction, _wallCheckOffset, _wallLayer);
-		}
-
+		
 		private void OnCollisionEnter2D(Collision2D other)
 		{
 			if (other.gameObject.layer != LayerMask.NameToLayer("Walls"))
