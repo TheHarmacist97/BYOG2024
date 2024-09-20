@@ -10,7 +10,8 @@ namespace Pacman
 			Vertical,
 			Horizontal,
 		}
-	
+
+		[SerializeField] private float _wallCheckOffset; 
 		[SerializeField] private LayerMask _wallLayer;
 		[SerializeField] private float _speed = 5f;
 		[SerializeField] private MoveDir _currentMoveDir = MoveDir.None;
@@ -46,12 +47,43 @@ namespace Pacman
 				transform.Translate(_dir * (_speed * Time.deltaTime), Space.World);
 		}
 
+		private void FixedUpdate()
+		{
+			// Ray2D upRay = new(transform.position, Vector3.up);
+			// Ray2D downRay = new(transform.position, Vector3.down);
+			// Ray2D leftRay = new(transform.position, Vector3.left);
+			// Ray2D rightRay = new(transform.position, Vector3.right);
+			
+			
+		}
+
+		private bool CheckRay(Ray2D ray)
+		{
+			return Physics2D.Raycast(ray.origin, ray.direction, _wallCheckOffset, _wallLayer);
+		}
+
 		private void OnCollisionEnter2D(Collision2D other)
 		{
-			if (other.gameObject.layer == LayerMask.NameToLayer("Walls"))
+			if (other.gameObject.layer != LayerMask.NameToLayer("Walls"))
 			{
-				Debug.Log(other.gameObject.name);
-				_currentMoveDir = MoveDir.None;
+				return;
+			}
+			foreach (ContactPoint2D primary in other.contacts)
+			{
+				Vector3 contactPoint = primary.point;
+				Vector2 diff = contactPoint - transform.position;
+				Vector2 diffNormal = diff.normalized;
+				Debug.Log(diffNormal+" "+diff+" "+contactPoint+ " "+ transform.position);
+				if (_currentMoveDir == MoveDir.Horizontal && Mathf.Abs(diffNormal.x)>0.6f)
+				{
+					_currentMoveDir = MoveDir.None;
+					break;
+				}
+				if (_currentMoveDir == MoveDir.Vertical && Mathf.Abs(diffNormal.y)>0.6f)
+				{
+					_currentMoveDir = MoveDir.None;
+					break;
+				}
 			}
 		}
 	}
