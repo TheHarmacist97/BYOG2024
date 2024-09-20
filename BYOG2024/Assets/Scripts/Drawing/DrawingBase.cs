@@ -25,10 +25,15 @@ namespace Drawing
 
         private void Start()
         {
-            _renderer = GetComponent<Renderer>();
-            _drawingMaterial = _renderer.material;
+            CacheVariables();
             _colourPalette.OnColourChanged += OnColourChanged;
-            _raycastHits = new RaycastHit[1];
+        }
+
+        private void CacheVariables()
+        {
+            _renderer ??= GetComponent<Renderer>();
+            _drawingMaterial ??= _renderer.material;
+            _raycastHits ??= new RaycastHit[1];
         }
 
         private void OnDestroy()
@@ -45,7 +50,7 @@ namespace Drawing
         private void Draw()
         {
             var ray = Camera.main!.ScreenPointToRay(Input.mousePosition);
-            if (!(Physics.RaycastNonAlloc(ray, _raycastHits, 1f, _layerMask,
+            if (!(Physics.RaycastNonAlloc(ray, _raycastHits, 100f, _layerMask,
                     QueryTriggerInteraction.Ignore) > 0)) return;
             var uv = _raycastHits[0].textureCoord;
             if (uv.x < 0 || uv.x > 1 || uv.y < 0 || uv.y > 1)
@@ -66,10 +71,17 @@ namespace Drawing
             _isDrawing = false;
             _timer = 0f;
         }
+
+        public void SetBrushSize(float size)
+        {
+            _drawingMaterial.SetFloat("_BrushSize", size);
+        }
         public void StartNewDrawing()
         {
             _timer = 0;
             _isDrawing = true;
+            if(!_drawingMaterial)
+                CacheVariables();
             _customRenderTexture =
                 new CustomRenderTexture(64, 64, RenderTextureFormat.ARGBInt, RenderTextureReadWrite.Linear)
                 {

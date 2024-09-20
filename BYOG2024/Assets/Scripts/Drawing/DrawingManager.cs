@@ -1,3 +1,4 @@
+using System;
 using Drawing;
 using TMPro;
 using UnityEngine;
@@ -7,6 +8,9 @@ public class DrawingManager : MonoBehaviour
 {
     [SerializeField]
     private PictureConfig[] _pictureConfigs;
+
+    [SerializeField]
+    private float[] _brushSizes;
 
     [SerializeField]
     private DrawingBase _drawingBase;
@@ -25,6 +29,7 @@ public class DrawingManager : MonoBehaviour
     private int _currentDrawingIndex;
 
     public static DrawingManager Instance;
+    public event Action<int> DrawingCompleted;
 
     private void Awake()
     {
@@ -36,6 +41,11 @@ public class DrawingManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        StartDrawing();
     }
 
     private void Update()
@@ -54,6 +64,15 @@ public class DrawingManager : MonoBehaviour
         Debug.Log("Started New Drawing");
     }
 
+    public void ClearDrawing()
+    {
+        Debug.Log("Clearing Drawing");
+        _drawingBase.StartNewDrawing();
+    }
+    public void SetBrushSize(int sizeIndex)
+    {
+        _drawingBase.SetBrushSize(_brushSizes[sizeIndex]);
+    } 
     public void ValidateDrawing()
     {
         var drawTime = _drawingBase.GetDrawTime();
@@ -62,15 +81,17 @@ public class DrawingManager : MonoBehaviour
             Debug.Log("Drawing is not finished");
             return;
         }
+        _drawingBase.StopDrawing();
         PacmanConfig.SetDrawing(_pictureConfigs[_currentDrawingIndex].pictureID, _drawingBase.GetDrawing());
         if (_currentDrawingIndex < _maxDrawings - 1)
         {
+            DrawingCompleted?.Invoke(_currentDrawingIndex);
             _currentDrawingIndex++;
+            StartDrawing();
         }
         else
         {
             SceneManager.LoadScene(3);
         }
-        _drawingBase.StopDrawing();
     }
 }
