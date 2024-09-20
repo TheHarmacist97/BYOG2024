@@ -10,24 +10,26 @@ public abstract class QuickTimeEvent : MonoBehaviour
     // event for game manager to listen to
     public event OnQTECompleted onQTECompleted;
     
-    [SerializeField] private float totalAllowedTime = 45f;
+    [SerializeField] protected float totalAllowedTime = 45f;
     // the number of things/actions player has to get right
-    [SerializeField] private int totalActionCount = 10;
+    [SerializeField] protected int totalActionCount = 10;
 
     [Tooltip("Root UI Panel that belong to this QTE")] 
-    [SerializeField] private GameObject uiPanel;
+    [SerializeField] protected GameObject uiPanel;
 
-    private float _timeLeft = 0f;
-    private bool _isPaused = true;
-    private int _succeededActionCount = 0;
-    private int _failedActionCount = 0;
-    private bool _isComplete = false;
+    protected float _timeLeft = 0f;
+    protected bool _isPaused = true;
+    protected int _succeededActionCount = 0;
+    protected int _failedActionCount = 0;
+    protected bool _isComplete = false;
 
     public bool IsComplete => _isComplete;
     
     private void Update()
     {
         if (_isPaused || _isComplete) return;
+
+        OnUpdate();
         
         _timeLeft -= Time.deltaTime;
         if (_timeLeft <= 0f)
@@ -35,6 +37,8 @@ public abstract class QuickTimeEvent : MonoBehaviour
             QTEComplete();
         }
     }
+
+    protected abstract void OnUpdate();
 
     private void StartQTE()
     {
