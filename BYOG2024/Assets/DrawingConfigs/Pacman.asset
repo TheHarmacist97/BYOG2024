@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4de419ae171f488094ff8047d8219ef4, type: 3}
   m_Name: Pacman
   m_EditorClassIdentifier: 
-  pictureID: pacman
+  pictureID: 0
   pictureName: Hero
   description: Draw a Hero with big mouth
+  canvasSize: {x: 64, y: 64}

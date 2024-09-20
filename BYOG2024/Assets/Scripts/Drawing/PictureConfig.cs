@@ -18,4 +18,6 @@ public class PictureConfig : ScriptableObject
 
     [TextArea]
     public string description;
+
+    public Vector2 canvasSize;
 }

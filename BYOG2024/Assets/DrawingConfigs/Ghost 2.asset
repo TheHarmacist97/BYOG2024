@@ -15,3 +15,4 @@ MonoBehaviour:
   pictureID: 2
   pictureName: Spooky Enemy
   description: Draw another Spooky Enemey
+  canvasSize: {x: 64, y: 64}

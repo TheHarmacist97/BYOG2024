@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Drawing
@@ -10,6 +11,16 @@ namespace Drawing
         [SerializeField]
         private LayerMask _layerMask;
 
+        [SerializeField]
+        private Transform _backgroundTransform;
+
+        [SerializeField]
+        private int2 _drawingScale = new int2(32, 64);
+
+        [SerializeField]
+        private Vector2 _drawingSize = new Vector2(5f, 7.5f);
+
+        private int2 _currentDrawingSize;
         private CustomRenderTexture _customRenderTexture;
         private Renderer _renderer;
         private Material _drawingMaterial;
@@ -17,6 +28,7 @@ namespace Drawing
         private static readonly int RenderTexture = Shader.PropertyToID("_Texture");
         private static readonly int BrushColor = Shader.PropertyToID("_BrushColor");
         private static readonly int BrushCoord = Shader.PropertyToID("_BrushCoord");
+        private static readonly int BrushSize = Shader.PropertyToID("_BrushSize");
 
         private RaycastHit[] _raycastHits;
         private bool _isDrawing;
@@ -74,16 +86,25 @@ namespace Drawing
 
         public void SetBrushSize(float size)
         {
-            _drawingMaterial.SetFloat("_BrushSize", size);
+            _drawingMaterial.SetFloat(BrushSize, size);
         }
-        public void StartNewDrawing()
+        public void StartNewDrawing(int2 size = default)
         {
             _timer = 0;
             _isDrawing = true;
             if(!_drawingMaterial)
                 CacheVariables();
+            if (size.Equals(default))
+            {
+                size = _currentDrawingSize;
+            }
+            else
+            {
+                _currentDrawingSize = size;
+                UpdateScale(_currentDrawingSize);
+            }
             _customRenderTexture =
-                new CustomRenderTexture(64, 64, RenderTextureFormat.ARGBInt, RenderTextureReadWrite.Linear)
+                new CustomRenderTexture(size.x, size.y, RenderTextureFormat.ARGBInt, RenderTextureReadWrite.Linear)
                 {
                     filterMode = FilterMode.Point,
                     updateMode = CustomRenderTextureUpdateMode.OnDemand,
@@ -94,6 +115,14 @@ namespace Drawing
 
             _drawingMaterial.SetTexture(RenderTexture, _customRenderTexture);
             _drawingMaterial.SetColor(BrushColor, _colourPalette.ActiveColour);
+        }
+
+        private void UpdateScale(int2 currentSize)
+        {
+            var scale = new Vector2(_drawingSize.x / currentSize.x, _drawingSize.y / currentSize.y);
+            var newSize = new Vector3(scale.x, scale.y, 1f);
+            transform.localScale = newSize;
+            _backgroundTransform.localScale = newSize;
         }
 
         public RenderTexture GetDrawing()

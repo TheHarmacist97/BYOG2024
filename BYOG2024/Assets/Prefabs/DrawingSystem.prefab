@@ -1308,6 +1308,11 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 64
+  _backgroundTransform: {fileID: 4790629417013130775}
+  _drawingScale:
+    x: 32
+    y: 64
+  _drawingSize: {x: 5, y: 7.5}
 --- !u!1 &5191121192466777991
 GameObject:
   m_ObjectHideFlags: 0
