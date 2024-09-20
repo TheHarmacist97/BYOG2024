@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ProgrammingQTE : QuickTimeEvent
 {
+    protected override void OnUpdate()
+    {
+        throw new System.NotImplementedException();
+    }
     protected override void Initialize()
     {
         
