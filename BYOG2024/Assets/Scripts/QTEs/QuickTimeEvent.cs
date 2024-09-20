@@ -25,6 +25,17 @@ public abstract class QuickTimeEvent : MonoBehaviour
 
     public bool IsComplete => _isComplete;
     
+    public void StartQTE()
+    {
+        Initialize();
+        _isComplete = false;
+        _isPaused = false;
+        _timeLeft = totalAllowedTime;
+        _succeededActionCount = 0;
+        _failedActionCount = 0;
+        uiPanel.SetActive(true);
+    }
+    
     private void Update()
     {
         if (_isPaused || _isComplete) return;
@@ -39,17 +50,6 @@ public abstract class QuickTimeEvent : MonoBehaviour
     }
 
     protected abstract void OnUpdate();
-
-    private void StartQTE()
-    {
-        Initialize();
-        _isComplete = false;
-        _isPaused = false;
-        _timeLeft = totalAllowedTime;
-        _succeededActionCount = 0;
-        _failedActionCount = 0;
-        uiPanel.SetActive(true);
-    }
 
     // Override in child class to initialize QTE
     protected abstract void Initialize();
@@ -92,6 +92,11 @@ public abstract class QuickTimeEvent : MonoBehaviour
     public float GetCompletionPercentage()
     {
         return (float)(_succeededActionCount + _failedActionCount) / totalActionCount;
+    }
+
+    public float GetTimeLeftProgress()
+    {
+        return _timeLeft / totalAllowedTime;
     }
     
     public void PauseTimer()
