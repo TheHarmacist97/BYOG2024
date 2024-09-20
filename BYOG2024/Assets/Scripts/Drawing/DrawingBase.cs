@@ -61,9 +61,15 @@ namespace Drawing
             }
         }
 
+        public void StopDrawing()
+        {
+            _isDrawing = false;
+            _timer = 0f;
+        }
         public void StartNewDrawing()
         {
             _timer = 0;
+            _isDrawing = true;
             _customRenderTexture =
                 new CustomRenderTexture(64, 64, RenderTextureFormat.ARGBInt, RenderTextureReadWrite.Linear)
                 {
@@ -85,10 +91,11 @@ namespace Drawing
 
         public float GetDrawTime()
         {
+            Debug.Log("Drawing time: " + _timer);
             return _timer;
         }
 
-    private void OnColourChanged(Color colour)
+        private void OnColourChanged(Color colour)
         {
             Debug.Log("Colour changed to: " + colour);
             _drawingMaterial.SetColor(BrushColor, colour);

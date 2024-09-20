@@ -1,4 +1,5 @@
 using Drawing;
+using TMPro;
 using UnityEngine;
 
 public class DrawingManager : MonoBehaviour
@@ -11,6 +12,13 @@ public class DrawingManager : MonoBehaviour
 
     [SerializeField]
     private float _drawingTime;
+
+    [Header("UI")]
+    [SerializeField]
+    private TextMeshProUGUI _descriptionText;
+
+    [SerializeField]
+    private TextMeshProUGUI _titleText;
 
     private int _currentDrawingIndex;
 
@@ -28,9 +36,20 @@ public class DrawingManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartDrawing();
+        }
+    }
+
     public void StartDrawing()
     {
+        _descriptionText.SetText(_pictureConfigs[_currentDrawingIndex].description);;
+        _titleText.SetText(_pictureConfigs[_currentDrawingIndex].pictureName);
         _drawingBase.StartNewDrawing();
+        Debug.Log("Started New Drawing");
     }
 
     public void ValidateDrawing()
@@ -42,5 +61,7 @@ public class DrawingManager : MonoBehaviour
             return;
         }
         PacmanConfig.SetDrawing(_pictureConfigs[_currentDrawingIndex].pictureID, _drawingBase.GetDrawing());
+        _currentDrawingIndex++;
+        _drawingBase.StopDrawing();
     }
 }
