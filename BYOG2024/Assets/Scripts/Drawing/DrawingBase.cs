@@ -45,7 +45,7 @@ namespace Drawing
         private void Draw()
         {
             var ray = Camera.main!.ScreenPointToRay(Input.mousePosition);
-            if (!(Physics.RaycastNonAlloc(ray, _raycastHits, 1f, _layerMask,
+            if (!(Physics.RaycastNonAlloc(ray, _raycastHits, 100f, _layerMask,
                     QueryTriggerInteraction.Ignore) > 0)) return;
             var uv = _raycastHits[0].textureCoord;
             if (uv.x < 0 || uv.x > 1 || uv.y < 0 || uv.y > 1)
