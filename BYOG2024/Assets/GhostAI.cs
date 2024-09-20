@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 public class GhostAI : MonoBehaviour
@@ -20,20 +21,21 @@ public class GhostAI : MonoBehaviour
 	[SerializeField] private Vector2 _direction;
 	[SerializeField] private float _speed;
 	[SerializeField] private Vector2 _randomClockMinMax;
-	[SerializeField] private float _timeTillPathingDecision;
+	private List<Vector2> availableDirections;
 
 	// Start is called before the first frame update
 	private void Start()
 	{
+		availableDirections = new List<Vector2>();
 		CheckForAvailablePaths();
-		PickRandomPath();
-		_timeTillPathingDecision = Random.Range(_randomClockMinMax.x, _randomClockMinMax.y);
+		PickRandomPath(); 
 	}
 
 
 	// Update is called once per frame
 	private void Update()
 	{
+		CheckForAvailablePaths();
 		if (_lastAvailablePaths != _availablePaths)
 		{
 			PickRandomPath();
@@ -42,41 +44,31 @@ public class GhostAI : MonoBehaviour
 		
 		transform.Translate(_direction * (_speed * Time.deltaTime));
 	}
-
-	private void FixedUpdate()
-	{
-		CheckForAvailablePaths();
-	}
+	
 	private void PickRandomPath()
 	{
 		_direction = Vector2.zero;
-		float dirRandom = Random.value;
-
-		if (dirRandom > 0.5f)
+		availableDirections.Clear();
+		if (_availablePaths.HasFlag(GhostAvailablePaths.Up))
 		{
-			float vertRandom = Random.value;
-			//pick Vertical
-			if (_availablePaths.HasFlag(GhostAvailablePaths.Up)&&vertRandom>0.5f)
-			{
-				_direction = Vector2.up;
-			}
-			else if (_availablePaths.HasFlag(GhostAvailablePaths.Down))
-			{
-				_direction = Vector2.down;
-			}
+			availableDirections.Add(Vector2.up);
 		}
-		else
+		if (_availablePaths.HasFlag(GhostAvailablePaths.Down))
 		{
-			float horRandom = Random.value;
-			if (_availablePaths.HasFlag(GhostAvailablePaths.Left)&&horRandom>0.5f)
-			{
-				_direction = Vector2.left;
-			}
-			else if (_availablePaths.HasFlag(GhostAvailablePaths.Right))
-			{
-				_direction = Vector2.right;
-			}
+			availableDirections.Add(Vector2.down);
 		}
+		if(_availablePaths.HasFlag(GhostAvailablePaths.Left))
+		{
+			availableDirections.Add(Vector2.left);
+		} 
+		if (_availablePaths.HasFlag(GhostAvailablePaths.Right))
+		{
+			availableDirections.Add(Vector2.right);
+		}
+		
+		_direction = availableDirections[Random.Range(0, availableDirections.Count)];
+		
+		
 		Debug.Log(_direction);
 	}
 
