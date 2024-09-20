@@ -4,12 +4,12 @@ using UnityEngine;
 
 public static class PacmanConfig
 {
-    public static readonly Dictionary<string, Sprite> Drawings = new();
+    public static readonly Dictionary<PictureIDs, Sprite> Drawings = new();
 
-    public static void SetDrawing(string pictureID, RenderTexture renderTexture)
+    public static void SetDrawing(PictureIDs pictureID, RenderTexture renderTexture)
     {
         Debug.Log($"Saving to {pictureID}");
-        Drawings[pictureID] = renderTexture.ToTexture2D();
+        Drawings.Add(pictureID, renderTexture.ToTexture2D());
     }
 
     public static Sprite ToTexture2D(this RenderTexture rTex)

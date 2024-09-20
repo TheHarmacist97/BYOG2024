@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4de419ae171f488094ff8047d8219ef4, type: 3}
   m_Name: Ghost 3
   m_EditorClassIdentifier: 
-  pictureID: ghost3
+  pictureID: 3
   pictureName: Spooky Enemy
   description: Draw another another Spooky Enemey

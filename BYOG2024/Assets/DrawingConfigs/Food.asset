@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4de419ae171f488094ff8047d8219ef4, type: 3}
   m_Name: Food
   m_EditorClassIdentifier: 
-  pictureID: food
+  pictureID: 4
   pictureName: Food Source
   description: Draw a Food that the hero can consume to survive

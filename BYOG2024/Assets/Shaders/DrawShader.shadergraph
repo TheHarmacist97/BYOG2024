@@ -2845,7 +2845,7 @@
     "m_ShaderOutputName": "A",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 50.0,
+        "x": 25.0,
         "y": 0.0,
         "z": 0.0,
         "w": 0.0

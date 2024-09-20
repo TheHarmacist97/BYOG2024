@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TestTexture : MonoBehaviour
 {
     [SerializeField]
-    private string _textureName;
+    private PictureIDs _picID;
 
     private SpriteRenderer _spriteRenderer;
 
@@ -16,7 +17,7 @@ public class TestTexture : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            _spriteRenderer.sprite = PacmanConfig.Drawings[_textureName];
+            _spriteRenderer.sprite = PacmanConfig.Drawings[_picID];
         }
     }
 }

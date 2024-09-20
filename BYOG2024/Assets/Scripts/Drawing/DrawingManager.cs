@@ -1,6 +1,7 @@
 using Drawing;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DrawingManager : MonoBehaviour
 {
@@ -19,7 +20,8 @@ public class DrawingManager : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI _titleText;
-
+    
+    private int _maxDrawings = 5; 
     private int _currentDrawingIndex;
 
     public static DrawingManager Instance;
@@ -38,7 +40,7 @@ public class DrawingManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)&&_currentDrawingIndex<_maxDrawings)
         {
             StartDrawing();
         }
@@ -61,7 +63,14 @@ public class DrawingManager : MonoBehaviour
             return;
         }
         PacmanConfig.SetDrawing(_pictureConfigs[_currentDrawingIndex].pictureID, _drawingBase.GetDrawing());
-        _currentDrawingIndex++;
+        if (_currentDrawingIndex < _maxDrawings - 1)
+        {
+            _currentDrawingIndex++;
+        }
+        else
+        {
+            SceneManager.LoadScene(3);
+        }
         _drawingBase.StopDrawing();
     }
 }

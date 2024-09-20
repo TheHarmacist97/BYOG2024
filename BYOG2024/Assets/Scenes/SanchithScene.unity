@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a94b5660beb90f43b6c0e2e4ade6591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textureName: ghost3
+  _picID: 3
 --- !u!212 &534217971
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -521,7 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a94b5660beb90f43b6c0e2e4ade6591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textureName: pacman
+  _picID: 0
 --- !u!1 &786327683
 GameObject:
   m_ObjectHideFlags: 0
@@ -1162,7 +1162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a94b5660beb90f43b6c0e2e4ade6591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textureName: ghost2
+  _picID: 2
 --- !u!212 &1170427561
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1396,7 +1396,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 64597e4384c00434d92b1f9989cc572d, type: 2}
   - {fileID: 11400000, guid: bd5c333d54731df48809579df09fd29d, type: 2}
   _drawingBase: {fileID: 1023600199}
-  _drawingTime: 10
+  _drawingTime: 1
   _descriptionText: {fileID: 2064788365}
   _titleText: {fileID: 626033603}
 --- !u!1 &1664893783
@@ -1566,7 +1566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a94b5660beb90f43b6c0e2e4ade6591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textureName: food
+  _picID: 4
 --- !u!212 &1764554246
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1665,7 +1665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a94b5660beb90f43b6c0e2e4ade6591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textureName: ghost1
+  _picID: 1
 --- !u!212 &1793787538
 SpriteRenderer:
   m_ObjectHideFlags: 0
