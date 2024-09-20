@@ -19,6 +19,8 @@ namespace Pacman
 		[SerializeField] private Collider2D _collider;
 		private bool _xInput, _xPos, _xNeg;
 		private bool _yInput, _yPos, _yNeg;
+		
+		public SpriteRenderer _spriteRenderer;
 	
 		private Vector2 _dir;
 		private void Awake()
