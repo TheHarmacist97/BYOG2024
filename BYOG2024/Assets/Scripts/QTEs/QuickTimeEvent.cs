@@ -67,7 +67,7 @@ public abstract class QuickTimeEvent : MonoBehaviour
     // Override in child class to initialize QTE
     protected abstract void Initialize();
 
-    private void QTEComplete()
+    protected void QTEComplete()
     {
         _isComplete = true;
         OnComplete();
@@ -75,14 +75,14 @@ public abstract class QuickTimeEvent : MonoBehaviour
             onQTECompleted();
     }
 
-    public void IncrementSuccessAction()
+    protected virtual void IncrementSuccessAction()
     {
         _succeededActionCount++;
         if(_succeededActionCount + _failedActionCount >= totalActionCount)
             QTEComplete();
     }
 
-    public void IncrementFailedAction()
+    protected virtual void IncrementFailedAction()
     {
         _failedActionCount++;
         if(_succeededActionCount + _failedActionCount >= totalActionCount)

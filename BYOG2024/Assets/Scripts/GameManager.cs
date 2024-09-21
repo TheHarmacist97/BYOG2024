@@ -53,6 +53,10 @@ public class GameManager : MonoBehaviour
                 DialogueManager.Instance.StartConversation(_currentQTE.conversation.conversationID);
             }
         }
+        else
+        {
+            DrawingManager.Instance.StartDrawing();
+        }
     }
 
     void OnDialogueEnded(string conversationID)
@@ -75,7 +79,7 @@ public class GameManager : MonoBehaviour
         CloseQTEPanel(_currentQTE.qte.GetUIPanel());
         _currentQTE.qte.onQTECompleted -= OnQTEComplete;
         _currentQTE = null;
-        DrawingManager.Instance.ResumeDrawing();
+        DrawingManager.Instance.StartDrawing();
     }
 
     void OpenQTEPanel()

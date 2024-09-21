@@ -56,7 +56,9 @@ namespace QTEs.SoundDesignQTE
 		
 		[SerializeField] private float _timeTakenToReachFirstNode;
 		private List<KeyQueueElement> _keyQueue;
+		
 		private WaitForSeconds _musicDelay;
+		private WaitForSeconds _completeDelay;
 		
 		protected override void OnUpdate()
 		{
@@ -109,7 +111,6 @@ namespace QTEs.SoundDesignQTE
 				currentQTEkey.transform.SetParent(_keyHolder, true);
 				_spawnedKeyList.Add(currentQTEkey);
 			}
-			return;
 		}
 		private void GetInputForKeys()
 		{
@@ -196,11 +197,35 @@ namespace QTEs.SoundDesignQTE
 			StartCoroutine(DelayAudioSourceStart());
 
 		}
+		protected override void IncrementSuccessAction()
+		{
+			_succeededActionCount++;
+			// if (_succeededActionCount + _failedActionCount >= totalActionCount)
+			// {
+			// 	StartCoroutine(DelayComplete());
+			// }
+		}
+		protected override void IncrementFailedAction()
+		{
+			_failedActionCount++;
+			// if (_succeededActionCount + _failedActionCount >= totalActionCount)
+			// {
+			// 	StartCoroutine(DelayComplete());
+			// }
+		}
+		// private IEnumerator DelayComplete()
+		// {
+		// 	yield return _completeDelay;
+		// 	QTEComplete();
+		// }
 		private IEnumerator DelayAudioSourceStart()
 		{
 			yield return _musicDelay;
 			_source.Play();
+			yield return new WaitForSeconds(_source.clip.length);
+			QTEComplete();
 		}
+
 		protected override void OnComplete()
 		{
 			ResetThisQTE();

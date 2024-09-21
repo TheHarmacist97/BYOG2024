@@ -26,6 +26,11 @@ public class DrawingManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _titleText;
 
+    [SerializeField]
+    private ButtonHoverBehaviour _clearButton;
+    [SerializeField]
+    private ButtonHoverBehaviour _validateButton;
+
     private int _maxDrawings = 5;
     private int _currentDrawingIndex;
 
@@ -54,6 +59,8 @@ public class DrawingManager : MonoBehaviour
         _descriptionText.SetText(_pictureConfigs[_currentDrawingIndex].description);
         _titleText.SetText(_pictureConfigs[_currentDrawingIndex].pictureName);
         _drawingBase.StartNewDrawing(_pictureConfigs[_currentDrawingIndex].canvasSize);
+        _clearButton.SetInteractable(true);
+        _validateButton.SetInteractable(true);
         Debug.Log("Started New Drawing");
     }
 
@@ -83,13 +90,14 @@ public class DrawingManager : MonoBehaviour
         {
             DrawingCompleted?.Invoke(_currentDrawingIndex);
             _currentDrawingIndex++;
-            StartDrawing();
         }
     }
 
     public void PauseDrawing()
     {
         //_drawingUI.SetActive(false);
+        _clearButton.SetInteractable(false);
+        _validateButton.SetInteractable(false);
         _drawingBase.PauseDrawing();
     }
 

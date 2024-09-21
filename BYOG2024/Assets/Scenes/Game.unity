@@ -2078,7 +2078,7 @@ PrefabInstance:
     - target: {fileID: 4227917647348109326, guid: 440b4892d552b604fa6f7798fe2973b0,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5255182260059415253, guid: 440b4892d552b604fa6f7798fe2973b0,
         type: 3}
@@ -4696,6 +4696,8 @@ MonoBehaviour:
   _drawingUI: {fileID: 5191121193203650861}
   _descriptionText: {fileID: 8772479432469689489}
   _titleText: {fileID: 4095940998170362626}
+  _clearButton: {fileID: 439847873523325105}
+  _validateButton: {fileID: 5034201476764874923}
 --- !u!114 &1318975628409039200
 MonoBehaviour:
   m_ObjectHideFlags: 0
