@@ -83,6 +83,7 @@ public class ProgrammingQTE : QuickTimeEvent
     private void MoveToNextLetter()
     {
         _currentLetterIndex++;
+        if (_currentLetterIndex >= totalActionCount) return;
         if(_letterObjs[_currentLetterIndex] != null)
             _letterObjs[_currentLetterIndex].SetAsCurrentlyActive();
     }

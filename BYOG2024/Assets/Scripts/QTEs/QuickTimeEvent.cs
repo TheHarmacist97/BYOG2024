@@ -10,7 +10,7 @@ public abstract class QuickTimeEvent : MonoBehaviour
     // event for game manager to listen to
     public event OnQTECompleted onQTECompleted;
 
-    [SerializeField] private float initialStartDelay = 1.5f;
+    [SerializeField] protected float initialStartDelay = 1.5f;
     
     [SerializeField] protected float totalAllowedTime = 45f;
     // the number of things/actions player has to get right
