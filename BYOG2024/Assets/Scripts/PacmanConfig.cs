@@ -49,8 +49,8 @@ public static class PacmanConfig
         try
         {
             Graphics.ConvertTexture(rTex, tex);
-            return Sprite.Create(tex, new Rect(0f, 0f, tex.width, tex.height), 
-                Vector2.one*0.5f, rTex.width, 0, SpriteMeshType.Tight);
+            return Sprite.Create(tex, new Rect(0f, 0f, tex.width, tex.height),
+                Vector2.one * 0.5f, rTex.width, 0, SpriteMeshType.Tight);
         }
         catch (Exception e)
         {
