@@ -44,3 +44,6 @@ TagManager:
   - name: QTE
     uniqueID: 750851707
     locked: 0
+  - name: Foreground
+    uniqueID: 1676541341
+    locked: 0

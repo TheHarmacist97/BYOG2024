@@ -36,8 +36,9 @@ namespace Dialogue
             State = DialogueState.Playing;
             speaker.SetText(dialogue.speaker);
             typewriterByWord.ShowText(dialogue.dialogueText);
+            canvasGroup.transform.DOShakePosition(0.4f, Vector2.one * 3, 50);
             canvasGroup.DOKill();
-            canvasGroup.DOFade(1, 1f);
+            canvasGroup.DOFade(1, 0.1f);
         }
 
         public void Nudge()
@@ -50,7 +51,7 @@ namespace Dialogue
         {
             State = DialogueState.Idle;
             canvasGroup.DOKill();
-            canvasGroup.DOFade(0, .5f);
+            canvasGroup.DOFade(0, .1f);
         }
 
         private void OnTextShownCompleted()
