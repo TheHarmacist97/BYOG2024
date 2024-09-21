@@ -824,6 +824,8 @@ MonoBehaviour:
   _drawingUI: {fileID: 5191121192466777991}
   _descriptionText: {fileID: 8772479431732978235}
   _titleText: {fileID: 4095940997433562536}
+  _clearButton: {fileID: 439847874395262491}
+  _validateButton: {fileID: 5034201476965789185}
 --- !u!1 &4103778289579300481
 GameObject:
   m_ObjectHideFlags: 0

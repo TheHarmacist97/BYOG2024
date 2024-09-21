@@ -20,6 +20,7 @@ public class DrawingManager : MonoBehaviour
     [Header("UI")]
     [SerializeField]
     private GameObject _drawingUI;
+
     [SerializeField]
     private TextMeshProUGUI _descriptionText;
 
@@ -28,6 +29,7 @@ public class DrawingManager : MonoBehaviour
 
     [SerializeField]
     private ButtonHoverBehaviour _clearButton;
+
     [SerializeField]
     private ButtonHoverBehaviour _validateButton;
 
@@ -57,8 +59,7 @@ public class DrawingManager : MonoBehaviour
 
     public void StartDrawing()
     {
-        _descriptionText.SetText(_pictureConfigs[_currentDrawingIndex].description);
-        _titleText.SetText(_pictureConfigs[_currentDrawingIndex].pictureName);
+        NotificationManager.Instance.SetNotification(_pictureConfigs[_currentDrawingIndex].description);
         _drawingBase.StartNewDrawing(_pictureConfigs[_currentDrawingIndex].canvasSize);
         _clearButton.SetInteractable(true);
         _validateButton.SetInteractable(true);

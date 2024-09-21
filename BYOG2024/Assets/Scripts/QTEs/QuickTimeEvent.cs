@@ -16,6 +16,8 @@ public abstract class QuickTimeEvent : MonoBehaviour
     // the number of things/actions player has to get right
     [SerializeField] protected int totalActionCount = 10;
 
+    [SerializeField] private string qteDescription;
+
     [Tooltip("Root UI Panel that belong to this QTE")] 
     [SerializeField] protected GameObject uiPanel;
 
@@ -47,6 +49,7 @@ public abstract class QuickTimeEvent : MonoBehaviour
         _timeLeft = totalAllowedTime;
         _succeededActionCount = 0;
         _failedActionCount = 0;
+        NotificationManager.Instance.SetNotification(qteDescription);
     }
     
     private void Update()
