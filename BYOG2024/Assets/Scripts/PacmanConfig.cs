@@ -6,6 +6,11 @@ public static class PacmanConfig
 {
     public static readonly Dictionary<PictureIDs, Sprite> Drawings = new();
 
+    public static float OverallSuccessRate { get; set; } = 1f;
+
+    public static float ProgrammingSuccess { get; set; } = 1f;
+    public static float SoundSuccess { get; set; } = 1f;
+
     public static void SetDrawing(PictureIDs pictureID, RenderTexture renderTexture)
     {
         Debug.Log($"Saving to {pictureID}");
@@ -14,7 +19,18 @@ public static class PacmanConfig
         Drawings.Add(pictureID, sprite);
     }
 
-    public static Sprite ToTexture2D(this RenderTexture rTex)
+    /// <summary>
+    /// Call this to reset all the shit in the Config
+    /// </summary>
+    public static void PurgeConfig()
+    {
+        Drawings.Clear();
+        OverallSuccessRate = 0f;
+        ProgrammingSuccess = 0f;
+        SoundSuccess = 0f;
+    }
+
+    private static Sprite ToTexture2D(this RenderTexture rTex)
     {
         if (rTex == null)
         {
