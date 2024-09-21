@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     private void OnAllDrawingsCompleted()
     {
         Debug.Log("All drawings completed");
+        SceneManager.LoadScene(3);
     }
 
     void OnDrawingCompleted(int index)
