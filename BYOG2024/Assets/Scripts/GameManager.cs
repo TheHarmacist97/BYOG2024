@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using Dialogue;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -24,6 +25,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Taskbar _taskbar;
 
+    [Header("Global Timer")] 
+    [SerializeField]
+    private float maxGameTime = 180f;
+    [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private TimerProgressBar timerProgressBar;
+
     [Header("QTE Panel config")]
     [SerializeField] private RectTransform qteCanvasParent;
     [SerializeField] private float timeToOpenQtePanel;
@@ -31,13 +38,37 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Ease qtePanelAnimEase = Ease.InSine;
     private QTEBlock _currentQTE;
     private float _qtePanelYPosition;
+    private float _timeLeft;
+    private bool _timeOver = false;
 
     private void Start()
     {
+        _timeLeft = maxGameTime;
         DrawingManager.Instance.StartDrawing();
         DrawingManager.Instance.DrawingCompleted += OnDrawingCompleted;
         DrawingManager.Instance.AllDrawingsCompleted += OnAllDrawingsCompleted;
         DialogueManager.Instance.OnDialogueEnded += OnDialogueEnded;
+    }
+
+    private void Update()
+    {
+        if (!_timeOver)
+        {
+            _timeLeft -= Time.deltaTime;
+            int minutes = Mathf.FloorToInt(_timeLeft / 60F);
+            int seconds = Mathf.FloorToInt(_timeLeft - minutes * 60);
+
+            string niceTime = string.Format("{0:00}:{1:00}", minutes, seconds);
+            timerText.text = niceTime;
+            timerProgressBar.SetProgress(_timeLeft/maxGameTime);
+            if (_timeLeft <= 0f)
+            {
+                _timeOver = true;
+                timerText.text = "00:00";
+                timerProgressBar.ResetTimer();
+                // GAME OVER STUFF
+            }
+        }
     }
 
     private void OnAllDrawingsCompleted()
