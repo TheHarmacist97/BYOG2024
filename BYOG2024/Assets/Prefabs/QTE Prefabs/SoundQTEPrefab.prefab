@@ -867,8 +867,7 @@ MonoBehaviour:
   _correctColor: {r: 0.33086073, g: 1, b: 0.29874206, a: 1}
   _wrongColor: {r: 1, g: 0.5264477, b: 0.47484267, a: 1}
   _normalColor: {r: 0.03529412, g: 0.7294118, b: 0, a: 0.42352942}
-  _clipLength: 38
-  _trailTimeStamp: 32
+  _clipLength: 32
   _maxPerfectDistance: 0.7
   _keyPrefab: {fileID: 1000113223387950330, guid: 0d2e72a99a344f341982707ec15df85f,
     type: 3}
