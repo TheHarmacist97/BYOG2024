@@ -45,11 +45,15 @@ namespace Pacman
 			{
 				_currentMoveDir = MoveDir.Horizontal;
 				_dir = new Vector2(_xNeg ? -1f : 1f, 0f);
+				_spriteRenderer.flipX = _xNeg;
+				transform.rotation = Quaternion.identity;
 			}
 			else if (_yInput)
 			{
 				_currentMoveDir = MoveDir.Vertical;
 				_dir = new Vector2(0f, _yNeg ? -1f : 1f);
+				_spriteRenderer.flipX = false;
+				transform.rotation = Quaternion.Euler(0,0, _yNeg ? -90f : 90f);
 			}
 			
 			if(_currentMoveDir != MoveDir.None)
