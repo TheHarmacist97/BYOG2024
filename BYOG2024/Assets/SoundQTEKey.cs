@@ -27,7 +27,7 @@ public class SoundQTEKey : MonoBehaviour
         _spriteRenderer.color = color;
         _speed = speed;
         _targetKey = keyQueueElement;
-        _text.color = color;
+        //_text.color = color;
         _text.text = keyQueueElement.ToString();
     }
 

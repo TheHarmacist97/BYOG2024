@@ -67,6 +67,5 @@ public class WritingQTE: QuickTimeEvent
     protected override void OnComplete()
     {
         timerProgressBar.ResetTimer();
-        uiPanel.SetActive(false);
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Dialogue;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -20,7 +21,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private QTEBlock[] departmentLeavingQTEs;
 
+    [Header("QTE Panel config")]
+    [SerializeField] private RectTransform qteCanvasParent;
+    [SerializeField] private float timeToOpenQtePanel;
+    [SerializeField] private float qtePanelYOffset;
+    [SerializeField] private Ease qtePanelAnimEase = Ease.InSine;
     private QTEBlock _currentQTE;
+    private float _qtePanelYPosition;
 
     private void Start()
     {
@@ -55,17 +62,36 @@ public class GameManager : MonoBehaviour
             if (qteBlock.conversation.conversationID.Equals(conversationID))
             {
                 qteBlock.executed = true;
+                OpenQTEPanel();
                 qteBlock.qte.StartQTE();
-                qteBlock.qte.onQTECompleted += OnQUEComplete;
+                qteBlock.qte.onQTECompleted += OnQTEComplete;
             }
                 
         }
     }
     
-    void OnQUEComplete()
+    void OnQTEComplete()
     {
-        _currentQTE.qte.onQTECompleted -= OnQUEComplete;
+        CloseQTEPanel(_currentQTE.qte.GetUIPanel());
+        _currentQTE.qte.onQTECompleted -= OnQTEComplete;
         _currentQTE = null;
         DrawingManager.Instance.ResumeDrawing();
+    }
+
+    void OpenQTEPanel()
+    {
+        qteCanvasParent.DOMoveY(qtePanelYOffset, 0f);
+        qteCanvasParent.localScale = Vector3.zero;
+        qteCanvasParent.DOMoveY(0f, timeToOpenQtePanel).SetEase(qtePanelAnimEase);
+        qteCanvasParent.DOScale(Vector3.one, timeToOpenQtePanel).SetEase(qtePanelAnimEase);
+    }
+    
+    void CloseQTEPanel(GameObject uiPanel)
+    {
+        qteCanvasParent.DOMoveY(qtePanelYOffset, timeToOpenQtePanel).SetEase(qtePanelAnimEase);
+        qteCanvasParent.DOScale(Vector3.zero, timeToOpenQtePanel).SetEase(qtePanelAnimEase).OnComplete(() =>
+        {
+            uiPanel.SetActive(false);
+        });
     }
 }

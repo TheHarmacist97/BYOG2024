@@ -9,6 +9,8 @@ public abstract class QuickTimeEvent : MonoBehaviour
     public delegate void OnQTECompleted();
     // event for game manager to listen to
     public event OnQTECompleted onQTECompleted;
+
+    [SerializeField] private float initialStartDelay = 1.5f;
     
     [SerializeField] protected float totalAllowedTime = 45f;
     // the number of things/actions player has to get right
@@ -24,8 +26,20 @@ public abstract class QuickTimeEvent : MonoBehaviour
     protected bool _isComplete = false;
 
     public bool IsComplete => _isComplete;
-    
+
+    private void Start()
+    {
+        ToggleAllChildren(false);
+    }
+
     public void StartQTE()
+    {
+        uiPanel.SetActive(true);
+        ToggleAllChildren(true);
+        Invoke(nameof(ActuallyStart), initialStartDelay);
+    }
+
+    void ActuallyStart()
     {
         Initialize();
         _isComplete = false;
@@ -33,7 +47,6 @@ public abstract class QuickTimeEvent : MonoBehaviour
         _timeLeft = totalAllowedTime;
         _succeededActionCount = 0;
         _failedActionCount = 0;
-        uiPanel.SetActive(true);
     }
     
     private void Update()
@@ -107,5 +120,18 @@ public abstract class QuickTimeEvent : MonoBehaviour
     public void ResumeTimer()
     {
         _isPaused = false;
+    }
+
+    public GameObject GetUIPanel()
+    {
+        return uiPanel;
+    }
+
+    private void ToggleAllChildren(bool enable)
+    {
+        foreach( Transform child in transform )
+        {
+            child.gameObject.SetActive(enable);
+        }
     }
 }

@@ -89,7 +89,7 @@ public class DrawingManager : MonoBehaviour
 
     public void PauseDrawing()
     {
-        _drawingUI.SetActive(false);
+        //_drawingUI.SetActive(false);
         _drawingBase.PauseDrawing();
     }
 

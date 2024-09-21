@@ -78,11 +78,6 @@ namespace Dialogue
             {
                 _dialogueSequencer.Nudge();
             }
-
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                StartConversation(conversationList[0].conversationID);
-            }
         }
     }
 }

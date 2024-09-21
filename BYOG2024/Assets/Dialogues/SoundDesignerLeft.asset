@@ -10,28 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eff497e54eee49939a3c7bfce51b6fe6, type: 3}
-  m_Name: WriterLeft
+  m_Name: SoundDesignerLeft
   m_EditorClassIdentifier: 
-  conversationID: WriterLeft
+  conversationID: SoundDesignerLeft
   dialogues:
-  - speaker: Writer
+  - speaker: Sound Designer
     dialogueText: '(In the distance..)
 
-      They asked me to write 100 pages of
-      backstory for a door..and it doesn''t even open!'
+      They asked me to create 200 unique
+      footstep sounds for different types of gravel'
     orientation: 0
-  - speaker: PM
+  - speaker: Sound Designer
     dialogueText: '(In the distance..)
 
-      Our players suggested that lore is
-      very important to them!'
+      <shake>How many ways can you walk on
+      rocks?!</shake>'
     orientation: 0
   - speaker: PM
-    dialogueText: Oh well.. our writers left
+    dialogueText: Oh well.. our sound producers left
     orientation: 0
   - speaker: PM
-    dialogueText: Please finish the story
+    dialogueText: Please finish tis track
     orientation: 0
   - speaker: PM
-    dialogueText: ..wasn't a question btw, I want it done yesterday!
+    dialogueText: Should be quick!
     orientation: 0

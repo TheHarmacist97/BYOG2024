@@ -107,6 +107,5 @@ public class ProgrammingQTE : QuickTimeEvent
     protected override void OnComplete()
     {
         timerProgressBar.ResetTimer();
-        uiPanel.SetActive(false);
     }
 }
