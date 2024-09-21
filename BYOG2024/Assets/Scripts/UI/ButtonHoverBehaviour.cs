@@ -32,6 +32,8 @@ public class ButtonHoverBehaviour : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void SetInteractable(bool interactable)
     {
+        if(_button == null)
+            _button = GetComponent<Button>();
         _button.interactable = interactable;
         if(!_button.interactable)
             transform.DOScale(_originalScale, hoverAnimDuration).SetEase(Ease.OutCubic).SetUpdate(true);

@@ -36,6 +36,7 @@ public class DrawingManager : MonoBehaviour
 
     public static DrawingManager Instance;
     public event Action<int> DrawingCompleted;
+    public event Action AllDrawingsCompleted;
 
     private void Awake()
     {
@@ -90,6 +91,10 @@ public class DrawingManager : MonoBehaviour
         {
             DrawingCompleted?.Invoke(_currentDrawingIndex);
             _currentDrawingIndex++;
+        }
+        else
+        {
+            AllDrawingsCompleted?.Invoke();
         }
     }
 

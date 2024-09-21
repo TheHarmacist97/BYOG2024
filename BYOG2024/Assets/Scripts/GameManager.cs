@@ -1,25 +1,28 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Dialogue;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-    [System.Serializable]
+    [Serializable]
     public class QTEBlock
     {
         public Conversation conversation;
         public QuickTimeEvent qte;
+        public ApplicationView applicationIcon;
         [HideInInspector]
         public bool executed = false;
     }
     
     [SerializeField]
     private QTEBlock[] departmentLeavingQTEs;
+
+    [SerializeField]
+    private Taskbar _taskbar;
 
     [Header("QTE Panel config")]
     [SerializeField] private RectTransform qteCanvasParent;
@@ -32,9 +35,16 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         DrawingManager.Instance.DrawingCompleted += OnDrawingCompleted;
+        DrawingManager.Instance.AllDrawingsCompleted += OnAllDrawingsCompleted;
         DialogueManager.Instance.OnDialogueEnded += OnDialogueEnded;
     }
-    
+
+    private void OnAllDrawingsCompleted()
+    {
+        Debug.Log("All drawings completed");
+        SceneManager.LoadScene(3);
+    }
+
     void OnDrawingCompleted(int index)
     {
         if (index >= 1)
@@ -67,6 +77,7 @@ public class GameManager : MonoBehaviour
             {
                 qteBlock.executed = true;
                 OpenQTEPanel();
+                _taskbar.SetApplication(qteBlock.applicationIcon);
                 qteBlock.qte.StartQTE();
                 qteBlock.qte.onQTECompleted += OnQTEComplete;
             }
@@ -76,6 +87,7 @@ public class GameManager : MonoBehaviour
     
     void OnQTEComplete()
     {
+        _taskbar.ResetApplication();
         CloseQTEPanel(_currentQTE.qte.GetUIPanel());
         _currentQTE.qte.onQTECompleted -= OnQTEComplete;
         _currentQTE = null;

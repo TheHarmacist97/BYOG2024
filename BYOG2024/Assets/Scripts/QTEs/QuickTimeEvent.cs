@@ -73,6 +73,7 @@ public abstract class QuickTimeEvent : MonoBehaviour
         OnComplete();
         if (onQTECompleted != null)
             onQTECompleted();
+        ToggleAllChildren(false);
     }
 
     protected virtual void IncrementSuccessAction()
