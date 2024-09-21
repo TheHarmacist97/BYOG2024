@@ -36,16 +36,44 @@ namespace UI
         [SerializeField]
         private Image _scoreFillImage;
 
+        private const string _gameTitle = "-man's\nAdventure";
 
         public void ShowGameEnd()
         {
             gameObject.SetActive(true);
+            _titleText.SetText(PacmanConfig.PacmanName + _gameTitle);
+            SetGameIcon();
+            CalculateScore();
+            SetReview();
         }
-
 
         private void CalculateScore()
         {
             var overallScore = PacmanConfig.OverallSuccessRate;
+            _currentScoreText.SetText($"{overallScore * 10f}");
+            _scoreFillImage.fillAmount = overallScore;
+        }
+
+        private void SetReview()
+        {
+            //How much they liked the game
+            var overallScore = PacmanConfig.OverallSuccessRate;
+            //How much bug free the game was
+            var programmingScore = PacmanConfig.ProgrammingSuccess;
+            //How much they liked the sound
+            var soundScore = PacmanConfig.SoundSuccess;
+            bool likedGame = overallScore > 0.5f;
+            bool bugFree = programmingScore > 0.5f;
+            bool likedSound = soundScore > 0.5f;
+            //Break the feedback into 3 parts
+            //1. How much they liked the game
+            //2. How much bug free the game was
+            //3. How much they liked the sound
+            
+            string feedback = likedGame ? "I liked the game" : "I didn't like the game";
+            feedback += bugFree ? ", I really liked that it did not break my pc" : ", the game had bugs";
+            feedback += likedSound ? ",Also I really liked the music" : ", Also I didn't like the sound";
+            _feedBackText.SetText(feedback);
         }
 
         private void SetGameIcon()

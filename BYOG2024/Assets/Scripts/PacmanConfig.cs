@@ -6,6 +6,7 @@ public static class PacmanConfig
 {
     public static readonly Dictionary<PictureIDs, Sprite> Drawings = new();
 
+    public static string PacmanName { get; set; } = "Pacman";
     public static float OverallSuccessRate { get; set; } = 1f;
 
     public static float ProgrammingSuccess { get; set; } = 1f;
