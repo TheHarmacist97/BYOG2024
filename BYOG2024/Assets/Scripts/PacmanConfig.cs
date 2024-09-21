@@ -9,7 +9,9 @@ public static class PacmanConfig
     public static void SetDrawing(PictureIDs pictureID, RenderTexture renderTexture)
     {
         Debug.Log($"Saving to {pictureID}");
-        Drawings.Add(pictureID, renderTexture.ToTexture2D());
+        Sprite sprite = renderTexture.ToTexture2D();
+        Debug.Log(sprite.pivot);
+        Drawings.Add(pictureID, sprite);
     }
 
     public static Sprite ToTexture2D(this RenderTexture rTex)
@@ -22,7 +24,7 @@ public static class PacmanConfig
 
         Texture2D tex = new Texture2D(rTex.width, rTex.height, TextureFormat.RGBA32, false)
         {
-            filterMode = FilterMode.Point
+            filterMode = FilterMode.Point,
         };
         var oldRT = RenderTexture.active;
         RenderTexture.active = rTex;
@@ -30,7 +32,8 @@ public static class PacmanConfig
         try
         {
             Graphics.ConvertTexture(rTex, tex);
-            return Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), Vector2.zero);
+            return Sprite.Create(tex, new Rect(0f, 0f, tex.width, tex.height), 
+                Vector2.one*0.5f, rTex.width, 0, SpriteMeshType.Tight);
         }
         catch (Exception e)
         {

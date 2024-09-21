@@ -122,7 +122,8 @@ namespace Drawing
                     updateMode = CustomRenderTextureUpdateMode.OnDemand,
                     initializationSource = CustomRenderTextureInitializationSource.Material,
                     initializationMaterial = _drawingMaterial,
-                    doubleBuffered = true
+                    doubleBuffered = true,
+                    updateZoneSpace = CustomRenderTextureUpdateZoneSpace.Normalized,
                 };
 
             _drawingMaterial.SetTexture(RenderTexture, _customRenderTexture);
