@@ -2611,16 +2611,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Notification
       objectReference: {fileID: 0}
-    - target: {fileID: 2716529518198168834, guid: 4fc66139f21d5014d8463414369fa456,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1.1920166
-      objectReference: {fileID: 0}
-    - target: {fileID: 2716529518198168834, guid: 4fc66139f21d5014d8463414369fa456,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.33398438
-      objectReference: {fileID: 0}
     - target: {fileID: 5893262139642708325, guid: 4fc66139f21d5014d8463414369fa456,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2659,7 +2649,7 @@ PrefabInstance:
     - target: {fileID: 5893262139642708325, guid: 4fc66139f21d5014d8463414369fa456,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 162.96
+      value: 99.67
       objectReference: {fileID: 0}
     - target: {fileID: 5893262139642708325, guid: 4fc66139f21d5014d8463414369fa456,
         type: 3}
@@ -2699,12 +2689,12 @@ PrefabInstance:
     - target: {fileID: 5893262139642708325, guid: 4fc66139f21d5014d8463414369fa456,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 12
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 5893262139642708325, guid: 4fc66139f21d5014d8463414369fa456,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -75
+      value: -88
       objectReference: {fileID: 0}
     - target: {fileID: 5893262139642708325, guid: 4fc66139f21d5014d8463414369fa456,
         type: 3}
@@ -3277,11 +3267,31 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2398853713188799132, guid: 440b4892d552b604fa6f7798fe2973b0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2398853713188799132, guid: 440b4892d552b604fa6f7798fe2973b0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.10000001
+      objectReference: {fileID: 0}
     - target: {fileID: 2436966001215752173, guid: 440b4892d552b604fa6f7798fe2973b0,
         type: 3}
       propertyPath: uiPanel
       value: 
       objectReference: {fileID: 596901718}
+    - target: {fileID: 2436966001215752173, guid: 440b4892d552b604fa6f7798fe2973b0,
+        type: 3}
+      propertyPath: qteDescription
+      value: Hit the keys on the beat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2436966001215752173, guid: 440b4892d552b604fa6f7798fe2973b0,
+        type: 3}
+      propertyPath: qteProgressBar
+      value: 
+      objectReference: {fileID: 111262034}
     - target: {fileID: 2436966001215752173, guid: 440b4892d552b604fa6f7798fe2973b0,
         type: 3}
       propertyPath: initialStartDelay
@@ -3296,6 +3306,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingLayerID
       value: 750851707
+      objectReference: {fileID: 0}
+    - target: {fileID: 3093367631982618599, guid: 440b4892d552b604fa6f7798fe2973b0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3093367631982618599, guid: 440b4892d552b604fa6f7798fe2973b0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3510562068906723597, guid: 440b4892d552b604fa6f7798fe2973b0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3510562068906723597, guid: 440b4892d552b604fa6f7798fe2973b0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.10000001
       objectReference: {fileID: 0}
     - target: {fileID: 4227917647348109326, guid: 440b4892d552b604fa6f7798fe2973b0,
         type: 3}
@@ -3320,12 +3350,12 @@ PrefabInstance:
     - target: {fileID: 6324603649078383523, guid: 440b4892d552b604fa6f7798fe2973b0,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 66.66667
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 6324603649078383523, guid: 440b4892d552b604fa6f7798fe2973b0,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 66.66667
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 6324603649078383523, guid: 440b4892d552b604fa6f7798fe2973b0,
         type: 3}
@@ -3335,7 +3365,7 @@ PrefabInstance:
     - target: {fileID: 6324603649078383523, guid: 440b4892d552b604fa6f7798fe2973b0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6324603649078383523, guid: 440b4892d552b604fa6f7798fe2973b0,
         type: 3}
@@ -3392,6 +3422,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6627831040406283987, guid: 440b4892d552b604fa6f7798fe2973b0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627831040406283987, guid: 440b4892d552b604fa6f7798fe2973b0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.10000001
+      objectReference: {fileID: 0}
     - target: {fileID: 6848833500040479960, guid: 440b4892d552b604fa6f7798fe2973b0,
         type: 3}
       propertyPath: m_IsActive
@@ -3421,6 +3461,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingLayerID
       value: 750851707
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911955960837009520, guid: 440b4892d552b604fa6f7798fe2973b0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911955960837009520, guid: 440b4892d552b604fa6f7798fe2973b0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.10000001
       objectReference: {fileID: 0}
     - target: {fileID: 8036898176679514153, guid: 440b4892d552b604fa6f7798fe2973b0,
         type: 3}
@@ -6368,7 +6418,7 @@ MonoBehaviour:
   initialStartDelay: 0.5
   totalAllowedTime: 45
   totalActionCount: 10
-  qteDescription: 
+  qteDescription: Be creative
   uiPanel: {fileID: 6752803144588259373}
   timerProgressBar: {fileID: 3824937723372949800}
   titleText: {fileID: 555990557489362205}
@@ -6452,8 +6502,6 @@ MonoBehaviour:
   _drawingBase: {fileID: 2427020850042883194}
   _drawingTime: 1
   _drawingUI: {fileID: 5191121193203650861}
-  _descriptionText: {fileID: 0}
-  _titleText: {fileID: 0}
   _clearButton: {fileID: 439847873523325105}
   _validateButton: {fileID: 5034201476764874923}
 --- !u!114 &1318975628409039200
@@ -9759,7 +9807,7 @@ MonoBehaviour:
   initialStartDelay: 1.5
   totalAllowedTime: 45
   totalActionCount: 25
-  qteDescription: 
+  qteDescription: Complete the code
   uiPanel: {fileID: 3902544466040832306}
   timerProgressBar: {fileID: 2800853010411559727}
   letterSpawnDelayRange: {x: 0.1, y: 0.5}

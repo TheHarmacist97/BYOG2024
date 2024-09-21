@@ -22,12 +22,6 @@ public class DrawingManager : MonoBehaviour
     private GameObject _drawingUI;
 
     [SerializeField]
-    private TextMeshProUGUI _descriptionText;
-
-    [SerializeField]
-    private TextMeshProUGUI _titleText;
-
-    [SerializeField]
     private ButtonHoverBehaviour _clearButton;
 
     [SerializeField]
@@ -52,13 +46,9 @@ public class DrawingManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        StartDrawing();
-    }
-
     public void StartDrawing()
     {
+        Debug.Log(_currentDrawingIndex);
         NotificationManager.Instance.SetNotification(_pictureConfigs[_currentDrawingIndex].description);
         _drawingBase.StartNewDrawing(_pictureConfigs[_currentDrawingIndex].canvasSize);
         _clearButton.SetInteractable(true);
@@ -90,8 +80,8 @@ public class DrawingManager : MonoBehaviour
         PacmanConfig.SetDrawing(_pictureConfigs[_currentDrawingIndex].pictureID, _drawingBase.GetDrawing());
         if (_currentDrawingIndex < _maxDrawings - 1)
         {
-            DrawingCompleted?.Invoke(_currentDrawingIndex);
             _currentDrawingIndex++;
+            DrawingCompleted?.Invoke(_currentDrawingIndex);
         }
         else
         {

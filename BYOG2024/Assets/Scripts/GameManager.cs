@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        DrawingManager.Instance.StartDrawing();
         DrawingManager.Instance.DrawingCompleted += OnDrawingCompleted;
         DrawingManager.Instance.AllDrawingsCompleted += OnAllDrawingsCompleted;
         DialogueManager.Instance.OnDialogueEnded += OnDialogueEnded;
@@ -47,7 +48,7 @@ public class GameManager : MonoBehaviour
 
     void OnDrawingCompleted(int index)
     {
-        if (index >= 1)
+        if (index > 1)
         {
             List<QTEBlock> availableQTEs = new List<QTEBlock>(); //Get all available
             foreach (var qte in departmentLeavingQTEs)
