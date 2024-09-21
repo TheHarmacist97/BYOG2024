@@ -71,8 +71,8 @@ namespace UI
             //3. How much they liked the sound
             
             string feedback = likedGame ? "I liked the game" : "I didn't like the game";
-            feedback += bugFree ? ", I really liked that it did not break my pc" : ", the game had bugs";
-            feedback += likedSound ? ",Also I really liked the music" : ", Also I didn't like the sound";
+            feedback += bugFree ? ", I really liked that it did not brick my PC" : ", the game had bugs";
+            feedback += likedSound ? ", Also I really liked the music" : ", Also I didn't like the sound";
             _feedBackText.SetText(feedback);
         }
 
@@ -95,6 +95,11 @@ namespace UI
             {
                 image.gameObject.SetActive(false);
             }
+        }
+        [ContextMenu("Show Game End")]
+        public void ShowGameEndContextMenu()
+        {
+            ShowGameEnd();
         }
     }
 }
