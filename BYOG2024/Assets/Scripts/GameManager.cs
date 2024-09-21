@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Dialogue;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
         [HideInInspector]
         public bool executed = false;
     }
+    
     [SerializeField]
     private QTEBlock[] departmentLeavingQTEs;
 
