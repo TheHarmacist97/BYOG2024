@@ -7165,6 +7165,11 @@ PrefabInstance:
       propertyPath: m_DrawMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8032902303923347064, guid: 1b77e6fdfd8099040aa115edcfce8ed7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9935eb985691ae64ba26061ddfe27ddb, type: 2}
     - target: {fileID: 8750813428437111931, guid: 1b77e6fdfd8099040aa115edcfce8ed7,
         type: 3}
       propertyPath: m_IsTrigger
@@ -18184,6 +18189,11 @@ PrefabInstance:
       propertyPath: m_DrawMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8032902303923347064, guid: 1b77e6fdfd8099040aa115edcfce8ed7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9935eb985691ae64ba26061ddfe27ddb, type: 2}
     - target: {fileID: 8750813428437111931, guid: 1b77e6fdfd8099040aa115edcfce8ed7,
         type: 3}
       propertyPath: m_IsTrigger
@@ -51631,9 +51641,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _glitchMatGhost: {fileID: 0}
   _glitchMatPacman: {fileID: 0}
-  _perfectSoundDesign: {fileID: 0}
-  _ehSoundDesign: {fileID: 0}
-  _fuckedSoundDesign: {fileID: 0}
+  _perfectSoundDesign: {fileID: 8300000, guid: ce752db4ca4ec6247bcdd28fded65baa, type: 3}
+  _ehSoundDesign: {fileID: 8300000, guid: b498a17c7e4a9554d9e503ad24b0d856, type: 3}
+  _fuckedSoundDesign: {fileID: 8300000, guid: 5bf1f366eb284644cacfb0dd4bfb8efe, type: 3}
   _gameOver: 0
   _pelletScoreIncrement: 10
   _timeToComplete: 60
@@ -57424,6 +57434,11 @@ PrefabInstance:
       propertyPath: _tilemap
       value: 
       objectReference: {fileID: 1541465819}
+    - target: {fileID: 1660656555707586209, guid: c98e0ad5349ad3c41b22eeb18d3d4ad7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0a255f47e5964ee4b9a9bac5f7c726d1, type: 2}
     - target: {fileID: 5503648596571725336, guid: c98e0ad5349ad3c41b22eeb18d3d4ad7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -57562,6 +57577,11 @@ PrefabInstance:
       propertyPath: _tilemap
       value: 
       objectReference: {fileID: 1541465819}
+    - target: {fileID: 8032902303923347064, guid: 1b77e6fdfd8099040aa115edcfce8ed7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9935eb985691ae64ba26061ddfe27ddb, type: 2}
     - target: {fileID: 8750813428437111931, guid: 1b77e6fdfd8099040aa115edcfce8ed7,
         type: 3}
       propertyPath: m_IsTrigger
