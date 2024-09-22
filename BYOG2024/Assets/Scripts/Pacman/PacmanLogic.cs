@@ -5,8 +5,8 @@ namespace Pacman
 {
 	public class PacmanLogic : MonoBehaviour
 	{
+		public bool _isAlive = true;
 		[SerializeField] private Tilemap _tilemap;
-		[SerializeField] private bool _isAlive = true;
 		[SerializeField] private Vector3Int _pickedDir;
 		[SerializeField] private AvailablePaths _availableDirEnum;
 		[SerializeField] private float _speed = 5f;
@@ -44,26 +44,45 @@ namespace Pacman
 			_time += Time.deltaTime * _speed;
 			transform.position = Vector3.Lerp(_currentPosition, _nextPosition, _time);
 
-			if (_time >= 1)
-			{
-				_time = 1;
-			}
-			
-			if (_time != 1) 
+			if (_time < 1)
 				return;
 			
 			GetEmptyDir(transform.position);
-			
+				
 			if (Collision())
 			{
 				_pickedDir = Vector3Int.zero;
 			}
-			
-			_currentPosition =	transform.position;
+				
+			_currentPosition = _tilemap.GetCellCenterWorld(_tilemap.WorldToCell(transform.position));
 			_nextPosition = GetNextCellPos();
+			MovementBasedVisuals();
 			_time = 0;
-
 		}
+		private void MovementBasedVisuals()
+		{
+			if (_pickedDir == Vector3Int.up)
+			{
+				_spriteRenderer.flipX = false;
+				transform.rotation = Quaternion.Euler(0,0,90);
+			}
+			if (_pickedDir == Vector3Int.down)
+			{
+				_spriteRenderer.flipX = false;
+				transform.rotation = Quaternion.Euler(0,0,-90);
+			}
+			if (_pickedDir == Vector3Int.left)
+			{
+				_spriteRenderer.flipX = true;
+				transform.rotation = Quaternion.identity;
+			}
+			if (_pickedDir == Vector3Int.right)
+			{
+				_spriteRenderer.flipX = false;
+				transform.rotation = Quaternion.identity;
+			}
+		}
+		
 		private Vector3 GetNextCellPos()
 		{
 			return _tilemap.GetCellCenterWorld(_tilemap.WorldToCell(_currentPosition) + _pickedDir);
@@ -78,10 +97,12 @@ namespace Pacman
 			if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
 			{
 				_pickedDir = Vector3Int.left;
+				
 			}
 			else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
 			{
 				_pickedDir = Vector3Int.right;
+				
 			}
 			else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
 			{
@@ -90,6 +111,7 @@ namespace Pacman
 			else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
 			{
 				_pickedDir = Vector3Int.up;
+				
 			}
 		}
 		private void OnCollisionWithGhost(Collision2D other)
