@@ -89,6 +89,19 @@ public class AudioManager : MonoBehaviour {
         StartCoroutine(AnimateMusicCrossfade(fadeDuration));
     }
 
+    public void PlayMusic(AudioClip musicClip, float optVolume)
+    {
+        activeMusicSourceIndex = 1 - activeMusicSourceIndex;
+        musicSources[activeMusicSourceIndex].clip = musicClip;
+        musicSources[activeMusicSourceIndex].volume = optVolume;
+        musicSources[activeMusicSourceIndex].Play();
+        
+        musicSources[activeMusicSourceIndex].volume = musicVolumePercent;
+        musicSources[1 - activeMusicSourceIndex].volume = 0;
+        if (musicSources[1 - activeMusicSourceIndex].volume <= 0f)
+            musicSources[1 - activeMusicSourceIndex].clip = null;
+    }
+
     //Method for playing sound with a AudioClip and Position
     public void PlaySound(AudioClip clip, Vector3 pos , float optVolume = 1)
     {

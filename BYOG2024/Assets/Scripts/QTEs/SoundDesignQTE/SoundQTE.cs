@@ -34,7 +34,6 @@ namespace QTEs.SoundDesignQTE
 
 		[Space]
 		[Header("Configs")]
-		[SerializeField] private float _clipLength;
 		[SerializeField] private float _maxPerfectDistance;
 		[SerializeField] private SoundQTEKey _keyPrefab;
 		[SerializeField] private float _keySpeed;
@@ -65,7 +64,7 @@ namespace QTEs.SoundDesignQTE
 		
 		protected override void OnUpdate()
 		{
-			qteProgressBar.SetProgress(_currentTime / _clipLength);
+			qteProgressBar.SetProgress(_currentTime / _musicAudio.length);
 			SpawnKeys();
 			GetInputForKeys();
 		}
@@ -186,12 +185,17 @@ namespace QTEs.SoundDesignQTE
 		protected override void Initialize()
 		{
 			GetTimeTakenToReachFirstNode();
+			Debug.Log("Initializing Sound QTE");
+			Debug.Log("Clip Length: " + _musicAudio.length);
+			Debug.Log("Time taken to Reach First Node: " + _timeTakenToReachFirstNode);
+			Debug.Log("Total Action Count: " + totalActionCount);
+			
 			_keyQueue = new List<KeyQueueElement>();
 			_triggerableKeys = new List<SoundQTEKey>();
 
 
 			float timeBetweenBeats = _beatTimeModifier * (60f / _bpm);
-			totalActionCount = (int)(_clipLength / timeBetweenBeats);
+			totalActionCount = (int)((_musicAudio.length - _timeTakenToReachFirstNode) / timeBetweenBeats);
 			for (int i = 0; i < totalActionCount; i++)
 			{
 				float dictKeyTime = timeBetweenBeats * i +_offset;
@@ -224,7 +228,7 @@ namespace QTEs.SoundDesignQTE
 		protected override void OnComplete()
 		{
 			ResetThisQTE();
-			AudioManager.instance.PlayMusic(_baseMusic, 1f, 0.4f);
+			AudioManager.instance.PlayMusic(_baseMusic, 0.4f);
 		}
 		private void ResetThisQTE()
 		{
