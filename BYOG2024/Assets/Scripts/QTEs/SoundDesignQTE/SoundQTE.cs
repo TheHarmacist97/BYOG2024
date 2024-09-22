@@ -13,6 +13,7 @@ namespace QTEs.SoundDesignQTE
 		private TimerProgressBar qteProgressBar;
 		[Header("Audio Sources")]
 		[SerializeField] private AudioClip _musicAudio;
+		[SerializeField] private AudioClip _baseMusic;
 
 		[Space]
 		[Header("Current Time")]
@@ -232,6 +233,7 @@ namespace QTEs.SoundDesignQTE
 		protected override void OnComplete()
 		{
 			ResetThisQTE();
+			AudioManager.instance.PlayMusic(_baseMusic, 1f);
 		}
 		private void ResetThisQTE()
 		{

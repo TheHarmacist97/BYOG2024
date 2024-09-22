@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UI;
 using UnityEngine;
+using UnityEngine.Serialization;
+
 namespace Pacman
 {
     public class PacmanManager : MonoBehaviour
@@ -11,7 +13,7 @@ namespace Pacman
         [SerializeField] private Material _glitchMatPacman;
         [SerializeField] private AudioClip _perfectSoundDesign;
         [SerializeField] private AudioClip _ehSoundDesign;
-        [SerializeField] private AudioClip _fuckedSoundDesign;
+        [SerializeField] private AudioClip _badSoundDesign;
         [SerializeField] private bool _gameOver;
         [SerializeField] private int _pelletScoreIncrement;
         [SerializeField] private float _timeToComplete;
@@ -42,7 +44,19 @@ namespace Pacman
         void Start()
         {
             SkinPacman();
-
+            if (PacmanConfig.SoundSuccess > 0.7)
+            {
+                AudioManager.instance.PlayMusic(_perfectSoundDesign, 1f);
+            }
+            else if (PacmanConfig.SoundSuccess > 0.4)
+            {
+                AudioManager.instance.PlayMusic(_ehSoundDesign, 1f);
+            }
+            else
+            {
+                AudioManager.instance.PlayMusic(_badSoundDesign, 1f);
+            }
+            
             _totalPellets = _pelletUtil.GetPelletCount();
             _currentPellets = 0;
             _currentTime = _timeToComplete;
