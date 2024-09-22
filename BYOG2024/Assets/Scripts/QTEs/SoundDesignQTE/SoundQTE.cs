@@ -222,13 +222,13 @@ namespace QTEs.SoundDesignQTE
 		{
 			AudioManager.instance.PlayMusic(_musicAudio, _timeTakenToReachFirstNode, 0.6f);
 			yield return new WaitForSeconds(_musicAudio.length);
+			AudioManager.instance.PlayMusic(_baseMusic, 0.4f);
 			QTEComplete();
 		}
 
 		protected override void OnComplete()
 		{
 			ResetThisQTE();
-			AudioManager.instance.PlayMusic(_baseMusic, 0.4f);
 		}
 		private void ResetThisQTE()
 		{

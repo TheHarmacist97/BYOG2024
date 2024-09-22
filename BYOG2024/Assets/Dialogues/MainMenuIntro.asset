@@ -23,8 +23,23 @@ MonoBehaviour:
       Another one bites the dust..'
     orientation: 1
   - speaker: PM
-    dialogueText: Umm.. Sorry about that.
+    dialogueText: ...Never mind that.
     orientation: 0
   - speaker: PM
-    dialogueText: You start today, welcome to the team!
+    dialogueText: That's a joke he says to everyone.
+    orientation: 0
+  - speaker: PM
+    dialogueText: Welcome to Very Real Studios.
+    orientation: 0
+  - speaker: PM
+    dialogueText: India's first AAAAA studio.
+    orientation: 0
+  - speaker: Programmer
+    dialogueText: '(In the distance....)
+
+      That''s because anyone who joins
+      starts screaming'
+    orientation: 1
+  - speaker: PM
+    dialogueText: YOU START TODAY!
     orientation: 0
