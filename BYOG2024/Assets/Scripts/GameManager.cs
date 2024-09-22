@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
     {
         _timeLeft = maxGameTime;
         UpdateTimerText();
+        timerProgressBar.SetProgress(1f);
         DrawingManager.Instance.DrawingCompleted += OnDrawingCompleted;
         DrawingManager.Instance.AllDrawingsCompleted += OnAllDrawingsCompleted;
         DialogueManager.Instance.OnDialogueEnded += OnDialogueEnded;

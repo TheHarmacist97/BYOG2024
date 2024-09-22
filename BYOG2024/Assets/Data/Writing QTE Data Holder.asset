@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Writing QTE Data Holder
   m_EditorClassIdentifier: 
   Questions:
-  - question: The Player comes from the vast valley of...
-    answer: dfdf
-  - question: Name the enemies
-    answer: dfd
-  - question: Name the game!
-    answer: dfdf
+  - question: The hero comes from the vast valley of...
+    answer: sdsd
+  - question: Name the hero!
+    answer: sdsd
+  - question: Name the hero's biggest enemy!
+    answer: sdsd
