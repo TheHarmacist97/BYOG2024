@@ -17,6 +17,7 @@ namespace Pacman
 	public class GhostAI : MonoBehaviour
 	{
 		public SpriteRenderer _spriteRenderer;
+		public bool _gameOver = false;
 		[SerializeField] private Tilemap _tilemap;
 		[SerializeField] private float _speed;
 		[SerializeField] private float _junctionEvaluationPeriod;
@@ -44,6 +45,9 @@ namespace Pacman
 
 		private void Update()
 		{
+			if(_gameOver)
+				return;
+			
 			_time += Time.deltaTime * _speed;
 			if (_timeToNextJunction > 0)
 			{
@@ -88,14 +92,7 @@ namespace Pacman
 		{
 			if (other.gameObject.layer == LayerMask.NameToLayer("Pacman"))
 			{
-				if (other.TryGetComponent(out PacmanLogic pacman))
-				{
-					//Stop all ghosts here as well
-
-					pacman.KillSelf();
-					enabled = false;
-				}
-
+				PacmanManager.Instance.PacmanDeath();
 			}
 		}
 

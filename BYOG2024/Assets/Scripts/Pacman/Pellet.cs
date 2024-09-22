@@ -1,14 +1,19 @@
+using System;
 using UnityEngine;
-public class Pellet : MonoBehaviour
+namespace Pacman
 {
-	public SpriteRenderer _spriteRenderer;
-	private void OnTriggerEnter2D(Collider2D other)
+	[Serializable]
+	public class Pellet : MonoBehaviour
 	{
-		Debug.Log(other.gameObject.name);
-		if (other.gameObject.layer != LayerMask.NameToLayer("Pacman"))
+		public SpriteRenderer _spriteRenderer;
+		private void OnTriggerEnter2D(Collider2D other)
 		{
-			return;
+			Debug.Log(other.gameObject.name);
+			if (other.gameObject.layer != LayerMask.NameToLayer("Pacman"))
+			{
+				return;
+			}
+			Destroy(gameObject);
 		}
-		Destroy(gameObject);
 	}
 }

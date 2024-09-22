@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pictureID: 3
   pictureName: Spooky Enemy
-  description: Draw the Spookiest Enemey
+  description: Draw the Spookiest Enemy
   canvasSize:
     x: 64
     y: 64
