@@ -38,7 +38,7 @@ namespace QTEs.SoundDesignQTE
 		[SerializeField] private SoundQTEKey _keyPrefab;
 		[SerializeField] private float _keySpeed;
 		[SerializeField] private float _bpm;
-		[SerializeField] [Range(1, 5)] private int _beatTimeModifier;
+		[SerializeField] [Range(0.25f, 5)] private float _beatTimeModifier;
 
 		[Header("Spawn Points")]
 		[SerializeField] private Transform _wSpawnPoint;
@@ -52,6 +52,7 @@ namespace QTEs.SoundDesignQTE
 		[SerializeField] private SpriteRenderer _perfectArea;
 
 		[SerializeField] private float _paddingTime;
+		[SerializeField] private float _offset;
 
 		[SerializeField] private List<SoundQTEKey> _spawnedKeyList;
 		[SerializeField] private List<SoundQTEKey> _triggerableKeys;
@@ -67,6 +68,7 @@ namespace QTEs.SoundDesignQTE
 			SpawnKeys();
 			GetInputForKeys();
 		}
+		
 		private void SpawnKeys()
 		{
 
@@ -192,7 +194,7 @@ namespace QTEs.SoundDesignQTE
 			totalActionCount = (int)(_clipLength / timeBetweenBeats);
 			for (int i = 0; i < totalActionCount; i++)
 			{
-				float dictKeyTime = timeBetweenBeats * i;
+				float dictKeyTime = timeBetweenBeats * i +_offset;
 				_keyQueue.Add(new KeyQueueElement(dictKeyTime, (QTEKey)Random.Range(0, 4)));
 			}
 			

@@ -874,8 +874,8 @@ MonoBehaviour:
   _maxPerfectDistance: 0.7
   _keyPrefab: {fileID: 1000113223387950330, guid: 0d2e72a99a344f341982707ec15df85f,
     type: 3}
-  _keySpeed: 5
-  _bpm: 120
+  _keySpeed: 3
+  _bpm: 90
   _beatTimeModifier: 1
   _wSpawnPoint: {fileID: 4307297212324966827}
   _sSpawnPoint: {fileID: 510605849541907888}
@@ -884,7 +884,8 @@ MonoBehaviour:
   _keyHolder: {fileID: 0}
   _detectionArea: {fileID: 2398853713188799132}
   _perfectArea: {fileID: 1752668027384333100}
-  _paddingTime: 5
+  _paddingTime: 1.2
+  _offset: 0.1
   _spawnedKeyList: []
   _triggerableKeys: []
   _timeTakenToReachFirstNode: 3

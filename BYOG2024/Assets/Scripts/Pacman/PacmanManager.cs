@@ -98,7 +98,6 @@ namespace Pacman
 
         public void GameOver()
         {
-            Debug.Log("Game Over");
             _gameOver = true;
             _gameEndPage.ShowGameEnd();
         }
