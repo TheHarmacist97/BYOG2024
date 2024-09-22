@@ -9,6 +9,8 @@ namespace QTEs.SoundDesignQTE
 {
 	public class SoundQTE : QuickTimeEvent
 	{
+		[SerializeField]
+		private TimerProgressBar qteProgressBar;
 		[Header("Audio Sources")]
 		[SerializeField] private AudioSource _source;
 
@@ -62,6 +64,7 @@ namespace QTEs.SoundDesignQTE
 		
 		protected override void OnUpdate()
 		{
+			qteProgressBar.SetProgress(_currentTime / _clipLength);
 			SpawnKeys();
 			GetInputForKeys();
 		}

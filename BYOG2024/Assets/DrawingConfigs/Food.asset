@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pictureID: 4
   pictureName: Food Source
-  description: Draw a Food that the hero can consume to survive
-  canvasSize: {x: 32, y: 32}
+  description: Draw a consumable food
+  canvasSize:
+    x: 32
+    y: 32
