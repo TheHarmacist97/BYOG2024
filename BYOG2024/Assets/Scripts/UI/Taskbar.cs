@@ -23,7 +23,7 @@ public class Taskbar : MonoBehaviour
 
     public void ResetApplication()
     {
-        _currentApplication.SetActive(false);
+        _currentApplication?.SetActive(false);
         _currentApplication = null;
         _drawingApplicationView.SetActive(true);
     }

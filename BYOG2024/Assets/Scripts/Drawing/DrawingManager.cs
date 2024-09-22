@@ -1,7 +1,6 @@
 using System;
 using Dialogue;
 using Drawing;
-using TMPro;
 using UnityEngine;
 
 public class DrawingManager : MonoBehaviour
@@ -31,7 +30,6 @@ public class DrawingManager : MonoBehaviour
     [SerializeField]
     private string[] _rejectionDialogues;
 
-    private int _maxDrawings = 5;
     private int _currentDrawingIndex;
 
     public static DrawingManager Instance;
@@ -62,6 +60,10 @@ public class DrawingManager : MonoBehaviour
             ClearDrawing();
             ResumeDrawing();
         }
+    }
+    public float  GetCompletionPercentage()
+    {
+        return (float)_currentDrawingIndex / _pictureConfigs.Length;
     }
 
     public void StartDrawing()
@@ -101,7 +103,7 @@ public class DrawingManager : MonoBehaviour
         }
 
         PacmanConfig.SetDrawing(_pictureConfigs[_currentDrawingIndex].pictureID, _drawingBase.GetDrawing());
-        if (_currentDrawingIndex < _maxDrawings - 1)
+        if (_currentDrawingIndex < _pictureConfigs.Length - 1)
         {
             _currentDrawingIndex++;
             DrawingCompleted?.Invoke(_currentDrawingIndex);

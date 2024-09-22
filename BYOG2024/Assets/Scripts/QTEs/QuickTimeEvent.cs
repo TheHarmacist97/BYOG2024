@@ -1,25 +1,35 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public abstract class QuickTimeEvent : MonoBehaviour
 {
+    private CancellationTokenSource _cancellationTokenSource;
+
     public delegate void OnQTECompleted();
+
     // event for game manager to listen to
     public event OnQTECompleted onQTECompleted;
 
-    [SerializeField] protected float initialStartDelay = 1.5f;
-    
-    [SerializeField] protected float totalAllowedTime = 45f;
+    [SerializeField]
+    protected float initialStartDelay = 1.5f;
+
+    [SerializeField]
+    protected float totalAllowedTime = 45f;
+
     // the number of things/actions player has to get right
-    [SerializeField] protected int totalActionCount = 10;
+    [SerializeField]
+    protected int totalActionCount = 10;
 
-    [SerializeField] private string qteDescription;
+    [SerializeField]
+    private string qteDescription;
 
-    [Tooltip("Root UI Panel that belong to this QTE")] 
-    [SerializeField] protected GameObject uiPanel;
+    [SerializeField]
+    private string qteID;
+
+    [Tooltip("Root UI Panel that belong to this QTE")]
+    [SerializeField]
+    protected GameObject uiPanel;
 
     protected float _timeLeft = 0f;
     protected bool _isPaused = true;
@@ -28,6 +38,7 @@ public abstract class QuickTimeEvent : MonoBehaviour
     protected bool _isComplete = false;
 
     public bool IsComplete => _isComplete;
+    public string ID => qteID;
 
     private void Start()
     {
@@ -36,13 +47,18 @@ public abstract class QuickTimeEvent : MonoBehaviour
 
     public void StartQTE()
     {
+        _cancellationTokenSource = new CancellationTokenSource();
         uiPanel.SetActive(true);
         ToggleAllChildren(true);
-        Invoke(nameof(ActuallyStart), initialStartDelay);
+        ActuallyStart(_cancellationTokenSource.Token);
     }
 
-    void ActuallyStart()
+    private async void ActuallyStart(CancellationToken cancellationToken)
     {
+        await Task.Delay((int)(initialStartDelay * 1000), cancellationToken);
+        if (cancellationToken.IsCancellationRequested)
+            return;
+        Debug.Log("Initializing QTE");
         Initialize();
         _isComplete = false;
         _isPaused = false;
@@ -51,13 +67,13 @@ public abstract class QuickTimeEvent : MonoBehaviour
         _failedActionCount = 0;
         NotificationManager.Instance.SetNotification(qteDescription);
     }
-    
+
     private void Update()
     {
         if (_isPaused || _isComplete) return;
 
         OnUpdate();
-        
+
         _timeLeft -= Time.deltaTime;
         if (_timeLeft <= 0f)
         {
@@ -72,6 +88,7 @@ public abstract class QuickTimeEvent : MonoBehaviour
 
     protected void QTEComplete()
     {
+        Debug.Log("Completed QTE");
         _isComplete = true;
         OnComplete();
         if (onQTECompleted != null)
@@ -82,30 +99,37 @@ public abstract class QuickTimeEvent : MonoBehaviour
     protected virtual void IncrementSuccessAction()
     {
         _succeededActionCount++;
-        if(_succeededActionCount + _failedActionCount >= totalActionCount)
+        if (_succeededActionCount + _failedActionCount >= totalActionCount)
             QTEComplete();
     }
 
     protected virtual void IncrementFailedAction()
     {
         _failedActionCount++;
-        if(_succeededActionCount + _failedActionCount >= totalActionCount)
+        if (_succeededActionCount + _failedActionCount >= totalActionCount)
             QTEComplete();
     }
 
     // Override in child class to carry out on complete activities
     protected abstract void OnComplete();
 
+    public void ForceComplete()
+    {
+        _cancellationTokenSource?.Cancel();
+        QTEComplete();
+        uiPanel.SetActive(false);
+    }
+
     public float GetSuccessPercentage()
     {
         return (float)_succeededActionCount / totalActionCount;
     }
-    
+
     public float GetFailurePercentage()
     {
-        return (float)_failedActionCount / totalActionCount;
+        return 1 - GetSuccessPercentage();
     }
-    
+
     public float GetCompletionPercentage()
     {
         return (float)(_succeededActionCount + _failedActionCount) / totalActionCount;
@@ -115,7 +139,7 @@ public abstract class QuickTimeEvent : MonoBehaviour
     {
         return _timeLeft / totalAllowedTime;
     }
-    
+
     public void PauseTimer()
     {
         _isPaused = true;
@@ -133,7 +157,7 @@ public abstract class QuickTimeEvent : MonoBehaviour
 
     private void ToggleAllChildren(bool enable)
     {
-        foreach( Transform child in transform )
+        foreach (Transform child in transform)
         {
             child.gameObject.SetActive(enable);
         }

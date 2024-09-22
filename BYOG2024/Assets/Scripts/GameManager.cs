@@ -16,32 +16,47 @@ public class GameManager : MonoBehaviour
         public Conversation conversation;
         public QuickTimeEvent qte;
         public ApplicationView applicationIcon;
+
         [HideInInspector]
         public bool executed = false;
     }
-    
+
     [SerializeField]
     private QTEBlock[] departmentLeavingQTEs;
+
     [Header("Conversations")]
     [SerializeField]
     private string startConversationID;
+
     [SerializeField]
     private string allDrawingsCompletedConversationID;
 
     [SerializeField]
     private Taskbar _taskbar;
 
-    [Header("Global Timer")] 
+    [Header("Global Timer")]
     [SerializeField]
     private float maxGameTime = 180f;
-    [SerializeField] private TextMeshProUGUI timerText;
-    [SerializeField] private TimerProgressBar timerProgressBar;
+
+    [SerializeField]
+    private TextMeshProUGUI timerText;
+
+    [SerializeField]
+    private TimerProgressBar timerProgressBar;
 
     [Header("QTE Panel config")]
-    [SerializeField] private RectTransform qteCanvasParent;
-    [SerializeField] private float timeToOpenQtePanel;
-    [SerializeField] private float qtePanelYOffset;
-    [SerializeField] private Ease qtePanelAnimEase = Ease.InSine;
+    [SerializeField]
+    private RectTransform qteCanvasParent;
+
+    [SerializeField]
+    private float timeToOpenQtePanel;
+
+    [SerializeField]
+    private float qtePanelYOffset;
+
+    [SerializeField]
+    private Ease qtePanelAnimEase = Ease.InSine;
+
     private QTEBlock _currentQTE;
     private float _qtePanelYPosition;
     private float _timeLeft;
@@ -50,7 +65,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Start()
     {
-        _timeLeft = maxGameTime;
+        // _timeLeft = maxGameTime;
+        _timeLeft = 10f;
         DrawingManager.Instance.DrawingCompleted += OnDrawingCompleted;
         DrawingManager.Instance.AllDrawingsCompleted += OnAllDrawingsCompleted;
         DialogueManager.Instance.OnDialogueEnded += OnDialogueEnded;
@@ -69,15 +85,45 @@ public class GameManager : MonoBehaviour
 
             string niceTime = string.Format("{0:00}:{1:00}", minutes, seconds);
             timerText.text = niceTime;
-            timerProgressBar.SetProgress(_timeLeft/maxGameTime);
+            timerProgressBar.SetProgress(_timeLeft / maxGameTime);
             if (_timeLeft <= 0f)
             {
                 _timeOver = true;
                 timerText.text = "00:00";
                 timerProgressBar.ResetTimer();
                 // GAME OVER STUFF
+                TimerOver();
             }
         }
+    }
+
+    private void TimerOver()
+    {
+        //Force Complete all QTEs
+        float completionPercentage = 0f;
+        float successPercentage = 0f;
+        float failurePercentage = 0f;
+
+        foreach (var qteBlock in departmentLeavingQTEs)
+        {
+            completionPercentage += qteBlock.qte.GetCompletionPercentage();
+            successPercentage += qteBlock.qte.GetSuccessPercentage();
+            failurePercentage += qteBlock.qte.GetFailurePercentage();
+
+            qteBlock.qte.ForceComplete();
+            qteBlock.executed = true;
+        }
+
+        completionPercentage += DrawingManager.Instance.GetCompletionPercentage();
+        completionPercentage /= departmentLeavingQTEs.Length + 1;
+        successPercentage /= departmentLeavingQTEs.Length;
+        failurePercentage /= departmentLeavingQTEs.Length;
+
+        Debug.Log(
+            $"Time Over\n Completion: {completionPercentage},\n Success: {successPercentage},\n Failure: {failurePercentage}");
+
+        _taskbar.ResetApplication();
+        DialogueManager.Instance.StartConversation(allDrawingsCompletedConversationID);
     }
 
     private void OnAllDrawingsCompleted()
@@ -94,7 +140,7 @@ public class GameManager : MonoBehaviour
             List<QTEBlock> availableQTEs = new List<QTEBlock>(); //Get all available
             foreach (var qte in departmentLeavingQTEs)
             {
-                if(!qte.executed)
+                if (!qte.executed)
                     availableQTEs.Add(qte);
             }
 
@@ -113,18 +159,19 @@ public class GameManager : MonoBehaviour
 
     void OnDialogueEnded(string conversationID)
     {
-
         if (conversationID.Equals(startConversationID))
         {
             DrawingManager.Instance.StartDrawing();
             _pausedTimer = false;
             return;
         }
-        if(conversationID.Equals(allDrawingsCompletedConversationID))
+
+        if (conversationID.Equals(allDrawingsCompletedConversationID))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             return;
         }
+
         foreach (var qteBlock in departmentLeavingQTEs)
         {
             if (qteBlock.conversation.conversationID.Equals(conversationID))
@@ -136,10 +183,9 @@ public class GameManager : MonoBehaviour
                 qteBlock.qte.StartQTE();
                 qteBlock.qte.onQTECompleted += OnQTEComplete;
             }
-                
         }
     }
-    
+
     void OnQTEComplete()
     {
         _taskbar.ResetApplication();
@@ -156,7 +202,7 @@ public class GameManager : MonoBehaviour
         qteCanvasParent.DOMoveY(0f, timeToOpenQtePanel).SetEase(qtePanelAnimEase);
         qteCanvasParent.DOScale(Vector3.one, timeToOpenQtePanel).SetEase(qtePanelAnimEase);
     }
-    
+
     void CloseQTEPanel(GameObject uiPanel)
     {
         qteCanvasParent.DOMoveY(qtePanelYOffset, timeToOpenQtePanel).SetEase(qtePanelAnimEase);
