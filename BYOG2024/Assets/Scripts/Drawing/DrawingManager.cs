@@ -1,4 +1,5 @@
 using System;
+using Dialogue;
 using Drawing;
 using TMPro;
 using UnityEngine;
@@ -33,6 +34,9 @@ public class DrawingManager : MonoBehaviour
     [SerializeField]
     private ButtonHoverBehaviour _validateButton;
 
+    [SerializeField]
+    private string[] _rejectionDialogues;
+
     private int _maxDrawings = 5;
     private int _currentDrawingIndex;
 
@@ -54,7 +58,17 @@ public class DrawingManager : MonoBehaviour
 
     private void Start()
     {
+        DialogueManager.Instance.OnDialogueEnded += OnDialogueEnded;
         StartDrawing();
+    }
+
+    private void OnDialogueEnded(string conversationID)
+    {
+        if (conversationID.StartsWith("rejection"))
+        {
+            ClearDrawing();
+            ResumeDrawing();
+        }
     }
 
     public void StartDrawing()
@@ -80,13 +94,18 @@ public class DrawingManager : MonoBehaviour
     public void ValidateDrawing()
     {
         var drawTime = _drawingBase.GetDrawTime();
+
+        //Drawing should be reset by the Game Manager
+        PauseDrawing();
+
         if (drawTime < _drawingTime)
         {
             Debug.Log("Drawing is not finished");
+            DialogueManager.Instance.StartConversation(
+                _rejectionDialogues[UnityEngine.Random.Range(0, _rejectionDialogues.Length)]);
             return;
         }
 
-        _drawingBase.StopDrawing();
         PacmanConfig.SetDrawing(_pictureConfigs[_currentDrawingIndex].pictureID, _drawingBase.GetDrawing());
         if (_currentDrawingIndex < _maxDrawings - 1)
         {
@@ -109,6 +128,8 @@ public class DrawingManager : MonoBehaviour
 
     public void ResumeDrawing()
     {
+        _clearButton.SetInteractable(true);
+        _validateButton.SetInteractable(true);
         _drawingUI.SetActive(true);
         _drawingBase.ResumeDrawing();
     }

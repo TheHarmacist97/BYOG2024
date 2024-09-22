@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
             if (availableQTEs.Count > 0)
             {
                 _currentQTE = availableQTEs[Random.Range(0, availableQTEs.Count)];
-                DrawingManager.Instance.PauseDrawing();
                 DialogueManager.Instance.StartConversation(_currentQTE.conversation.conversationID);
             }
         }

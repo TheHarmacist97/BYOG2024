@@ -6456,6 +6456,12 @@ MonoBehaviour:
   _titleText: {fileID: 0}
   _clearButton: {fileID: 439847873523325105}
   _validateButton: {fileID: 5034201476764874923}
+  _rejectionDialogues:
+  - rejection1
+  - rejection2
+  - rejection3
+  - rejection4
+  - rejection5
 --- !u!114 &1318975628409039200
 MonoBehaviour:
   m_ObjectHideFlags: 0

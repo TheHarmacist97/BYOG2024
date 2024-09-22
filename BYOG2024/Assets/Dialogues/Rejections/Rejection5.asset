@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eff497e54eee49939a3c7bfce51b6fe6, type: 3}
+  m_Name: Rejection5
+  m_EditorClassIdentifier: 
+  conversationID: rejection5
+  dialogues:
+  - speaker: PM
+    dialogueText: You're so close! Just take a deep breath, and then redo the entire
+      thing.
+    orientation: 0

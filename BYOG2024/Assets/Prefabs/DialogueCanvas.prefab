@@ -612,6 +612,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c9946a97838b68b49931dc2460cb392e, type: 2}
   - {fileID: 11400000, guid: d453e9a304267834f92696f9e78f8346, type: 2}
   - {fileID: 11400000, guid: b344f46b96e9a0f4fb96ea7f42b70c4c, type: 2}
+  - {fileID: 11400000, guid: 52fc728e4ae29a24ca7df88358bef61e, type: 2}
+  - {fileID: 11400000, guid: 8ecc84e24e845014288bbef53c2d3d9d, type: 2}
+  - {fileID: 11400000, guid: fc7294ac799a9e64abcdfb4b768859bb, type: 2}
+  - {fileID: 11400000, guid: 6a9c404a3f256e941b49f7413ee5f4bd, type: 2}
+  - {fileID: 11400000, guid: 844d78a88aa8ffc43810cb9ed59d8de0, type: 2}
 --- !u!223 &612190211430623231
 Canvas:
   m_ObjectHideFlags: 0
