@@ -61,7 +61,7 @@ Material:
     m_Floats:
     - _Mult: 12
     - _Pixelation: 12
-    - _Progress: 1.0002058
+    - _Progress: 0.0479654
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Rows: 5

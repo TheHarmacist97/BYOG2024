@@ -795,17 +795,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 6290431988228613360, guid: 6f91ed35ea668f74d8f805047b1c5eaf,
-        type: 3}
-      propertyPath: conversationList.Array.size
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6290431988228613360, guid: 6f91ed35ea668f74d8f805047b1c5eaf,
-        type: 3}
-      propertyPath: conversationList.Array.data[11]
-      value: 
-      objectReference: {fileID: 11400000, guid: 9d8cc524804977648bc60b0e063d5078,
-        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8311482280190813529, guid: 6f91ed35ea668f74d8f805047b1c5eaf, type: 3}

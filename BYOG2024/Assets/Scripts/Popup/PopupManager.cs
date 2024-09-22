@@ -31,6 +31,7 @@ public class PopupManager: MonoBehaviour
         Popup popup = Instantiate(popupPrefab);
         popup.PopupParent.transform.DOScaleX(0f, 0f);
         popup.PopupParent.transform.DOScaleX(1f, popupOpenTime).SetEase(Ease.OutBack);
+        AudioManager.instance.PlaySound2D("POPUP");
         popup.Init(text, duration);
         StartCoroutine(ClosePopup(popup, duration, OnClose));
     }

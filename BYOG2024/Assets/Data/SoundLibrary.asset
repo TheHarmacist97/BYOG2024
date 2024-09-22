@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d73b5603835de4eb2151f9de19ebe6, type: 3}
   m_Name: SoundLibrary
   m_EditorClassIdentifier: 
-  soundGroups: []
+  soundGroups:
+  - GroupID: QTE_COMPLETE
+    group:
+    - {fileID: 8300000, guid: 729d80d1e6b985144afb38442f2cc721, type: 3}
+    - {fileID: 8300000, guid: e59cecd0deaa17f42b3efd0f4c18cd7c, type: 3}
+    - {fileID: 8300000, guid: bba9435321e4843499d8dd9c26b719e1, type: 3}

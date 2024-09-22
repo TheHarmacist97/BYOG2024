@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator Start()
     {
         _timeLeft = maxGameTime;
+        UpdateTimerText();
         DrawingManager.Instance.DrawingCompleted += OnDrawingCompleted;
         DrawingManager.Instance.AllDrawingsCompleted += OnAllDrawingsCompleted;
         DialogueManager.Instance.OnDialogueEnded += OnDialogueEnded;
@@ -79,11 +80,7 @@ public class GameManager : MonoBehaviour
         if (!_timeOver && !_pausedTimer)
         {
             _timeLeft -= Time.deltaTime;
-            int minutes = Mathf.FloorToInt(_timeLeft / 60F);
-            int seconds = Mathf.FloorToInt(_timeLeft - minutes * 60);
-
-            string niceTime = string.Format("{0:00}:{1:00}", minutes, seconds);
-            timerText.text = niceTime;
+            UpdateTimerText();
             timerProgressBar.SetProgress(_timeLeft / maxGameTime);
             if (_timeLeft <= 0f)
             {
@@ -96,6 +93,15 @@ public class GameManager : MonoBehaviour
                 DialogueManager.Instance.StartConversation(allDrawingsCompletedConversationID);
             }
         }
+    }
+
+    private void UpdateTimerText()
+    {
+        int minutes = Mathf.FloorToInt(_timeLeft / 60F);
+        int seconds = Mathf.FloorToInt(_timeLeft - minutes * 60);
+
+        string niceTime = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timerText.text = niceTime;
     }
 
     private void GameOver()
