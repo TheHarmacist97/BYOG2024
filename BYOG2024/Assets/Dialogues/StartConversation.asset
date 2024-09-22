@@ -27,7 +27,7 @@ MonoBehaviour:
     dialogueText: And We need a Game
     orientation: 1
   - speaker: PM
-    dialogueText: Should not take more than 2 minutes right?
+    dialogueText: Should not take more than 4 minutes right?
     orientation: 1
   - speaker: PM
     dialogueText: Alright let's get cracking!

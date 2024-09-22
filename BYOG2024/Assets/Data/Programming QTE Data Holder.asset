@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Programming QTE Data Holder
   m_EditorClassIdentifier: 
   codeBlocks:
-  - fileName: Movement.cs
-    codeFile: {fileID: 11500000, guid: 26765c6060b6b1148977637d3f300705, type: 3}
+  - fileName: Pacman
+    codeFile: {fileID: 4900000, guid: b0d102caa662cb640b40850f36768531, type: 3}
   errorBlocks:
   - errorText: // What am I doing with my life
   - errorText: '// Should''ve filed for bankruptcy '
+  - errorText: '// Hopefully this works '
+  - errorText: // ChatGPT told me this would work!
