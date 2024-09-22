@@ -1,14 +1,15 @@
 using System.Collections.Generic;
+using TMPro;
 using UI;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Pacman
 {
     public class PacmanManager : MonoBehaviour
     {
         public static PacmanManager Instance;
-        
+
+        [SerializeField] private TextMeshProUGUI _scoreText;
         [SerializeField] private Material _glitchMatGhost;
         [SerializeField] private Material _glitchMatPacman;
         [SerializeField] private AudioClip _perfectSoundDesign;
@@ -74,7 +75,7 @@ namespace Pacman
             _pacman._spriteRenderer.sprite = PacmanConfig.Drawings.GetValueOrDefault(PictureIDs.Pacman, _defaultSprite);
             _ghostAI1._spriteRenderer.sprite = PacmanConfig.Drawings.GetValueOrDefault(PictureIDs.Ghost1, _defaultSprite);
             _ghostAI2._spriteRenderer.sprite = PacmanConfig.Drawings.GetValueOrDefault(PictureIDs.Ghost2, _defaultSprite);
-            _ghostAI3._spriteRenderer.sprite = PacmanConfig.Drawings.GetValueOrDefault(PictureIDs.Food, _defaultSprite);
+            _ghostAI3._spriteRenderer.sprite = PacmanConfig.Drawings.GetValueOrDefault(PictureIDs.Ghost3, _defaultSprite);
             _pelletUtil.SkinPellets(PacmanConfig.Drawings.GetValueOrDefault(PictureIDs.Food, _defaultSprite));
         }
 
@@ -112,6 +113,7 @@ namespace Pacman
         {
             _currentPellets++;
             _currentScore += _pelletScoreIncrement;
+            _scoreText.text = "Score:  " + string.Format(_currentScore.ToString("D2"));
             if (_currentPellets >= _totalPellets)
             {
                 AllPelletsEaten();

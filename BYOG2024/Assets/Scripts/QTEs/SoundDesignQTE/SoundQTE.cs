@@ -154,7 +154,6 @@ namespace QTEs.SoundDesignQTE
 					//Accurate hit, increase correct counter
 					//also give feedback
 					IncrementSuccessAction();
-					
 					success = true;
 				}
 				else
@@ -205,18 +204,10 @@ namespace QTEs.SoundDesignQTE
 		protected override void IncrementSuccessAction()
 		{
 			_succeededActionCount++;
-			// if (_succeededActionCount + _failedActionCount >= totalActionCount)
-			// {
-			// 	StartCoroutine(DelayComplete());
-			// }
 		}
 		protected override void IncrementFailedAction()
 		{
 			_failedActionCount++;
-			// if (_succeededActionCount + _failedActionCount >= totalActionCount)
-			// {
-			// 	StartCoroutine(DelayComplete());
-			// }
 		}
 		// private IEnumerator DelayComplete()
 		// {
@@ -241,12 +232,7 @@ namespace QTEs.SoundDesignQTE
 			_spawnedKeyList.Clear();
 			_triggerableKeys.Clear();
 		}
-
-		[ContextMenu("We have this")]
-		private void ResetQTE()
-		{
-			StartQTE();
-		}
+		
 
 		[ContextMenu("Get Time to Reach First Node")]
 		private void GetTimeTakenToReachFirstNode()
