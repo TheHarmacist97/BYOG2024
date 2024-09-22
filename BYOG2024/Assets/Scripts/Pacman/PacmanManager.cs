@@ -9,7 +9,9 @@ namespace Pacman
         
         [SerializeField] private Material _glitchMatGhost;
         [SerializeField] private Material _glitchMatPacman;
-        //[SerializeField] private 
+        [SerializeField] private AudioClip _perfectSoundDesign;
+        [SerializeField] private AudioClip _ehSoundDesign;
+        [SerializeField] private AudioClip _fuckedSoundDesign;
         [SerializeField] private bool _gameOver;
         [SerializeField] private int _pelletScoreIncrement;
         [SerializeField] private float _timeToComplete;

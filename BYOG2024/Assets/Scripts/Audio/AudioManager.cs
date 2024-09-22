@@ -73,8 +73,8 @@ public class AudioManager : MonoBehaviour {
         musicSources[1].volume = musicVolumePercent;
 
         //Saving the change in volume in PlayerPrefs
-        PlayerPrefs.SetFloat("Sfx vol", sfxVolumePercent);
-        PlayerPrefs.SetFloat("Music vol", musicVolumePercent);
+        PlayerPrefs.SetFloat("SFX_VOL", sfxVolumePercent);
+        PlayerPrefs.SetFloat("MUSIC_VOL", musicVolumePercent);
 
         PlayerPrefs.Save();
     }
