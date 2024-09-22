@@ -225,7 +225,7 @@ namespace QTEs.SoundDesignQTE
 		// }
 		private IEnumerator DelayAudioSourceStart()
 		{
-			AudioManager.instance.PlayMusic(_musicAudio, _timeTakenToReachFirstNode);
+			AudioManager.instance.PlayMusic(_musicAudio, _timeTakenToReachFirstNode, 0.6f);
 			yield return new WaitForSeconds(_musicAudio.length);
 			QTEComplete();
 		}
@@ -233,7 +233,7 @@ namespace QTEs.SoundDesignQTE
 		protected override void OnComplete()
 		{
 			ResetThisQTE();
-			AudioManager.instance.PlayMusic(_baseMusic, 1f);
+			AudioManager.instance.PlayMusic(_baseMusic, 1f, 0.4f);
 		}
 		private void ResetThisQTE()
 		{

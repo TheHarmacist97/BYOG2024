@@ -13,8 +13,21 @@ MonoBehaviour:
   m_Name: SoundLibrary
   m_EditorClassIdentifier: 
   soundGroups:
-  - GroupID: QTE_COMPLETE
+  - GroupID: POPUP
     group:
     - {fileID: 8300000, guid: 729d80d1e6b985144afb38442f2cc721, type: 3}
     - {fileID: 8300000, guid: e59cecd0deaa17f42b3efd0f4c18cd7c, type: 3}
     - {fileID: 8300000, guid: bba9435321e4843499d8dd9c26b719e1, type: 3}
+  - GroupID: NOTIFICATION
+    group:
+    - {fileID: 8300000, guid: 57226ffe3ecd7814e950d9343fe19e3d, type: 3}
+  - GroupID: QTE_FAILED
+    group:
+    - {fileID: 8300000, guid: d9242eb4eb641b943bb45a4705144faf, type: 3}
+    - {fileID: 8300000, guid: a70db6740c0420f41946f89485e5cc38, type: 3}
+  - GroupID: QTE_SUCCESS
+    group:
+    - {fileID: 8300000, guid: 4a0a5a1ba2537114aa7e965796475e56, type: 3}
+  - GroupID: CLICK
+    group:
+    - {fileID: 8300000, guid: f3519aee21b64c74c8d2622abbc3b833, type: 3}

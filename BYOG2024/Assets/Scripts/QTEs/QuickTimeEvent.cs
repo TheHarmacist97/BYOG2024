@@ -110,6 +110,7 @@ public abstract class QuickTimeEvent : MonoBehaviour
     protected virtual void IncrementSuccessAction()
     {
         _succeededActionCount++;
+        AudioManager.instance.PlaySound2D("QTE_SUCCESS");
         if (_succeededActionCount + _failedActionCount >= totalActionCount)
             QTEComplete();
     }
@@ -117,6 +118,7 @@ public abstract class QuickTimeEvent : MonoBehaviour
     protected virtual void IncrementFailedAction()
     {
         _failedActionCount++;
+        AudioManager.instance.PlaySound2D("QTE_FAILED");
         if (_succeededActionCount + _failedActionCount >= totalActionCount)
             QTEComplete();
     }

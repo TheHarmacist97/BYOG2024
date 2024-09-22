@@ -31,6 +31,7 @@ public class NotificationManager : MonoBehaviour
 
     public void SetNotification(string notification)
     {
+        AudioManager.instance.PlaySound2D("NOTIFICATION");
         _typewriterByCharacter.ShowText(notification);
         StartCoroutine(FlashBadge());
     }

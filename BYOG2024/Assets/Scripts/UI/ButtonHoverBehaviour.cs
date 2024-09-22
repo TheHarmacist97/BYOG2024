@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
-public class ButtonHoverBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ButtonHoverBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
     [SerializeField] private float hoverScaleMultiplier = 1.2f;
     [SerializeField] private float hoverAnimDuration = 0.4f;
@@ -53,5 +53,11 @@ public class ButtonHoverBehaviour : MonoBehaviour, IPointerEnterHandler, IPointe
         transform.DOScale(_originalScale, hoverAnimDuration).SetEase(Ease.OutCubic).SetUpdate(true);
         if(_text) 
             DOTween.To(() => _text.characterSpacing, x => _text.characterSpacing = x, _initialTextSpacing, hoverAnimDuration).SetEase(Ease.OutCubic).SetUpdate(true);
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if(!_button.interactable) return;
+        AudioManager.instance.PlaySound2D("CLICK");
     }
 }
