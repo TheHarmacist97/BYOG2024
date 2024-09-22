@@ -3510,11 +3510,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2436966001215752173, guid: 440b4892d552b604fa6f7798fe2973b0,
         type: 3}
-      propertyPath: _bpm
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 2436966001215752173, guid: 440b4892d552b604fa6f7798fe2973b0,
-        type: 3}
       propertyPath: qteID
       value: soundqte
       objectReference: {fileID: 0}
