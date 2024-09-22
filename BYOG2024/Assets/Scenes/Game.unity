@@ -5131,6 +5131,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3054155167564710471, guid: cdaf9c73eafe4d742b041bb63a672c15,
         type: 3}
+      propertyPath: writingQteDataHolder
+      value: 
+      objectReference: {fileID: 11400000, guid: 39055310a3959134d89e165034e6c7ba,
+        type: 2}
+    - target: {fileID: 3054155167564710471, guid: cdaf9c73eafe4d742b041bb63a672c15,
+        type: 3}
       propertyPath: departmentLeavingQTEs.Array.size
       value: 3
       objectReference: {fileID: 0}

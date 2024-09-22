@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private QTEBlock[] departmentLeavingQTEs;
+    
+    [SerializeField]
+    private WritingQTEDataHolder writingQteDataHolder;
 
     [Header("Conversations")]
     [SerializeField]
@@ -126,6 +129,9 @@ public class GameManager : MonoBehaviour
                 case "soundqte":
                     overallSuccessRate += qteBlock.qte.GetSuccessPercentage();
                     soundSuccessRate = qteBlock.qte.GetSuccessPercentage();
+                    break;
+                case "writingqte":
+                    PacmanConfig.PacmanName = writingQteDataHolder.Questions[1].answer.Trim().Equals("") ? "Pacman" : writingQteDataHolder.Questions[1].answer.Trim();
                     break;
             }
         }
