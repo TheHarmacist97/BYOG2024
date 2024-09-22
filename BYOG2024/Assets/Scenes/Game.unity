@@ -604,6 +604,74 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 140373967}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &226092774
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2842888923593106489, guid: de57e7535d7a5344ba658fe3e518bc6f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842888923593106489, guid: de57e7535d7a5344ba658fe3e518bc6f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842888923593106489, guid: de57e7535d7a5344ba658fe3e518bc6f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842888923593106489, guid: de57e7535d7a5344ba658fe3e518bc6f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842888923593106489, guid: de57e7535d7a5344ba658fe3e518bc6f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842888923593106489, guid: de57e7535d7a5344ba658fe3e518bc6f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842888923593106489, guid: de57e7535d7a5344ba658fe3e518bc6f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842888923593106489, guid: de57e7535d7a5344ba658fe3e518bc6f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842888923593106489, guid: de57e7535d7a5344ba658fe3e518bc6f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842888923593106489, guid: de57e7535d7a5344ba658fe3e518bc6f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7863025028794368623, guid: de57e7535d7a5344ba658fe3e518bc6f,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: de57e7535d7a5344ba658fe3e518bc6f, type: 3}
 --- !u!114 &273827220 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7114197450800589163, guid: df47fbaa5a609ed4e976a31bc09a3a7b,
@@ -3324,9 +3392,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2436966001215752173, guid: 440b4892d552b604fa6f7798fe2973b0,
         type: 3}
+      propertyPath: qteID
+      value: soundqte
+      objectReference: {fileID: 0}
+    - target: {fileID: 2436966001215752173, guid: 440b4892d552b604fa6f7798fe2973b0,
+        type: 3}
       propertyPath: uiPanel
       value: 
       objectReference: {fileID: 596901718}
+    - target: {fileID: 2436966001215752173, guid: 440b4892d552b604fa6f7798fe2973b0,
+        type: 3}
+      propertyPath: _musicAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: e3fa5ce502a86fd4b8178ebd866150a5, type: 3}
     - target: {fileID: 2436966001215752173, guid: 440b4892d552b604fa6f7798fe2973b0,
         type: 3}
       propertyPath: qteDescription
@@ -6489,6 +6567,7 @@ MonoBehaviour:
   totalAllowedTime: 45
   totalActionCount: 10
   qteDescription: Be creative
+  qteID: writingqte
   uiPanel: {fileID: 6752803144588259373}
   timerProgressBar: {fileID: 3824937723372949800}
   titleText: {fileID: 555990557489362205}
@@ -9884,6 +9963,7 @@ MonoBehaviour:
   totalAllowedTime: 45
   totalActionCount: 25
   qteDescription: Complete the code
+  qteID: programmingqte
   uiPanel: {fileID: 3902544466040832306}
   timerProgressBar: {fileID: 2800853010411559727}
   letterSpawnDelayRange: {x: 0.1, y: 0.5}
@@ -10301,3 +10381,4 @@ SceneRoots:
   - {fileID: 1229857664}
   - {fileID: 1710030297}
   - {fileID: 1855511931}
+  - {fileID: 226092774}
