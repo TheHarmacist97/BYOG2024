@@ -13,6 +13,9 @@ public abstract class QuickTimeEvent : MonoBehaviour
 
     [SerializeField]
     protected float initialStartDelay = 1.5f;
+    
+    [SerializeField]
+    protected string completionPopupText = "Completed...";
 
     [SerializeField]
     protected float totalAllowedTime = 45f;
@@ -90,6 +93,11 @@ public abstract class QuickTimeEvent : MonoBehaviour
     {
         Debug.Log("Completed QTE");
         _isComplete = true;
+        PopupManager.Instance.ShowPopup(completionPopupText, 3f, ActuallyComplete);
+    }
+
+    void ActuallyComplete()
+    {
         OnComplete();
         if (onQTECompleted != null)
             onQTECompleted();

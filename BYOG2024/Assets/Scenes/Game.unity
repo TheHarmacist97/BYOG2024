@@ -3538,6 +3538,11 @@ PrefabInstance:
       propertyPath: initialStartDelay
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2436966001215752173, guid: 440b4892d552b604fa6f7798fe2973b0,
+        type: 3}
+      propertyPath: completionPopupText
+      value: Exporting music...
+      objectReference: {fileID: 0}
     - target: {fileID: 2928304059265885592, guid: 440b4892d552b604fa6f7798fe2973b0,
         type: 3}
       propertyPath: m_SortingLayer
@@ -5892,6 +5897,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087068813}
   m_CullTransparentMesh: 1
+--- !u!1001 &2132238673
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1064872595879015635, guid: e9aa667a59ce6694abb7283667607535,
+        type: 3}
+      propertyPath: m_Name
+      value: PopupManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813982307064700090, guid: e9aa667a59ce6694abb7283667607535,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813982307064700090, guid: e9aa667a59ce6694abb7283667607535,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813982307064700090, guid: e9aa667a59ce6694abb7283667607535,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813982307064700090, guid: e9aa667a59ce6694abb7283667607535,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813982307064700090, guid: e9aa667a59ce6694abb7283667607535,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813982307064700090, guid: e9aa667a59ce6694abb7283667607535,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813982307064700090, guid: e9aa667a59ce6694abb7283667607535,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813982307064700090, guid: e9aa667a59ce6694abb7283667607535,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813982307064700090, guid: e9aa667a59ce6694abb7283667607535,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4813982307064700090, guid: e9aa667a59ce6694abb7283667607535,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e9aa667a59ce6694abb7283667607535, type: 3}
 --- !u!114 &36761866167260813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6682,6 +6755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialStartDelay: 0.5
+  completionPopupText: Printing document...
   totalAllowedTime: 45
   totalActionCount: 10
   qteDescription: Be creative
@@ -10078,6 +10152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialStartDelay: 1.5
+  completionPopupText: Compiling code...
   totalAllowedTime: 45
   totalActionCount: 25
   qteDescription: Complete the code
@@ -10489,6 +10564,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1769274640}
+  - {fileID: 2132238673}
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
