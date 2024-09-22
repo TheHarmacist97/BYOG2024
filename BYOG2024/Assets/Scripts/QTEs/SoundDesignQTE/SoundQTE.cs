@@ -12,7 +12,7 @@ namespace QTEs.SoundDesignQTE
 		[SerializeField]
 		private TimerProgressBar qteProgressBar;
 		[Header("Audio Sources")]
-		[SerializeField] private AudioSource _source;
+		[SerializeField] private AudioClip _musicAudio;
 
 		[Space]
 		[Header("Current Time")]
@@ -59,7 +59,6 @@ namespace QTEs.SoundDesignQTE
 		[SerializeField] private float _timeTakenToReachFirstNode;
 		private List<KeyQueueElement> _keyQueue;
 		
-		private WaitForSeconds _musicDelay;
 		private WaitForSeconds _completeDelay;
 		
 		protected override void OnUpdate()
@@ -184,7 +183,7 @@ namespace QTEs.SoundDesignQTE
 
 		protected override void Initialize()
 		{
-			_musicDelay = new WaitForSeconds(_timeTakenToReachFirstNode);
+			GetTimeTakenToReachFirstNode();
 			_keyQueue = new List<KeyQueueElement>();
 			_triggerableKeys = new List<SoundQTEKey>();
 
@@ -223,9 +222,8 @@ namespace QTEs.SoundDesignQTE
 		// }
 		private IEnumerator DelayAudioSourceStart()
 		{
-			yield return _musicDelay;
-			_source.Play();
-			yield return new WaitForSeconds(_source.clip.length);
+			AudioManager.instance.PlayMusic(_musicAudio, _timeTakenToReachFirstNode);
+			yield return new WaitForSeconds(_musicAudio.length);
 			QTEComplete();
 		}
 
