@@ -1,12 +1,14 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
 {
-    [SerializeField] private string menuSceneName = "MainMenu";
+    [SerializeField] private int menuSceneIndex = 0;
     
     [SerializeField] private GameObject pausePanel;
+    [SerializeField] private Transform titleText;
     [SerializeField] private Button resumeButton;
     [SerializeField] private Button mainMenuButton;
     
@@ -35,9 +37,9 @@ public class PauseManager : MonoBehaviour
         else
         {
             _isPaused = true;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
             pausePanel.SetActive(true);
+            titleText.DOKill();
+            titleText.DOShakePosition(0.3f, Vector2.one * 6, 40).SetUpdate(true);
             Time.timeScale = 0f;
         }
     }
@@ -45,8 +47,6 @@ public class PauseManager : MonoBehaviour
     private void Resume()
     {
         Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         _isPaused = false;
         pausePanel.SetActive(false);
     }
@@ -54,6 +54,6 @@ public class PauseManager : MonoBehaviour
     private void MainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(menuSceneName);
+        SceneTransitionManager.Instance.LoadScene(menuSceneIndex);
     }
 }
