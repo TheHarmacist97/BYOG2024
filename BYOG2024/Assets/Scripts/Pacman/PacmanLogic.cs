@@ -1,69 +1,96 @@
-using System;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+
 namespace Pacman
 {
 	public class PacmanLogic : MonoBehaviour
 	{
-		private enum MoveDir
-		{
-			None,
-			Vertical,
-			Horizontal,
-		}
-
+		[SerializeField] private Tilemap _tilemap;
 		[SerializeField] private bool _isAlive = true;
-		[SerializeField] private float _wallCheckOffset; 
-		[SerializeField] private LayerMask _wallLayer;
+		[SerializeField] private Vector3Int _pickedDir;
+		[SerializeField] private AvailablePaths _availableDirEnum;
 		[SerializeField] private float _speed = 5f;
-		[SerializeField] private MoveDir _currentMoveDir = MoveDir.None;
 		[SerializeField] private Collider2D _collider;
+		[SerializeField] private float _time;
+		[SerializeField] private Vector3 _currentPosition, _nextPosition;
+
+		public SpriteRenderer _spriteRenderer;
+
+		private Vector2 _dir;
 		private bool _xInput, _xPos, _xNeg;
 		private bool _yInput, _yPos, _yNeg;
-		
-		public SpriteRenderer _spriteRenderer;
-	
-		private Vector2 _dir;
 		private void Awake()
 		{
 			_isAlive = true;
 		}
+
+		private void Start()
+		{
+			transform.position = _tilemap.GetCellCenterWorld(_tilemap.WorldToCell(transform.position));
+			_currentPosition = transform.position;
+			_nextPosition = transform.position;
+		}
+
 		// Update is called once per frame
 		private void Update()
 		{
-			if(!_isAlive) return;
-			
-			_xNeg = Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A);
-			_xPos = Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D);
-			_xInput = _xNeg || _xPos;
-
-			_yPos = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W);
-			_yNeg = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
-			_yInput = _yNeg || _yPos;
-
-		
-			if (_xInput)
+			if (!_isAlive)
 			{
-				_currentMoveDir = MoveDir.Horizontal;
-				_dir = new Vector2(_xNeg ? -1f : 1f, 0f);
-				_spriteRenderer.flipX = _xNeg;
-				transform.rotation = Quaternion.identity;
+				return;
 			}
-			else if (_yInput)
+
+			GetInput();
+			
+			_time += Time.deltaTime * _speed;
+			transform.position = Vector3.Lerp(_currentPosition, _nextPosition, _time);
+
+			if (_time >= 1)
 			{
-				_currentMoveDir = MoveDir.Vertical;
-				_dir = new Vector2(0f, _yNeg ? -1f : 1f);
-				_spriteRenderer.flipX = false;
-				transform.rotation = Quaternion.Euler(0,0, _yNeg ? -90f : 90f);
+				_time = 1;
 			}
 			
-			if(_currentMoveDir != MoveDir.None)
-				transform.Translate(_dir * (_speed * Time.deltaTime), Space.World);
+			if (_time != 1) 
+				return;
+			
+			GetEmptyDir(transform.position);
+			
+			if (Collision())
+			{
+				_pickedDir = Vector3Int.zero;
+			}
+			
+			_currentPosition =	transform.position;
+			_nextPosition = GetNextCellPos();
+			_time = 0;
+
 		}
-		
+		private Vector3 GetNextCellPos()
+		{
+			return _tilemap.GetCellCenterWorld(_tilemap.WorldToCell(_currentPosition) + _pickedDir);
+		}
+
 		private void OnCollisionEnter2D(Collision2D other)
 		{
-			OnCollisionWithWall(other);
 			OnCollisionWithGhost(other);
+		}
+		private void GetInput()
+		{
+			if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+			{
+				_pickedDir = Vector3Int.left;
+			}
+			else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+			{
+				_pickedDir = Vector3Int.right;
+			}
+			else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+			{
+				_pickedDir = Vector3Int.down;
+			}
+			else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+			{
+				_pickedDir = Vector3Int.up;
+			}
 		}
 		private void OnCollisionWithGhost(Collision2D other)
 		{
@@ -74,33 +101,73 @@ namespace Pacman
 			_isAlive = false;
 		}
 
-		private void OnCollisionWithWall(Collision2D other)
+		private bool Collision()
 		{
-			if (other.gameObject.layer != LayerMask.NameToLayer("Walls"))
+			if (_pickedDir == Vector3Int.up && !_availableDirEnum.HasFlag(AvailablePaths.Up))
 			{
-				return;
+				return true;
 			}
-			foreach (ContactPoint2D primary in other.contacts)
+			if (_pickedDir == Vector3Int.down && !_availableDirEnum.HasFlag(AvailablePaths.Down))
 			{
-				Vector3 contactPoint = primary.point;
-				Vector2 diff = contactPoint - transform.position;
-				Vector2 diffNormal = diff.normalized;
-				Debug.Log(diffNormal+" "+diff+" "+contactPoint+ " "+ transform.position);
-				if (_currentMoveDir == MoveDir.Horizontal && Mathf.Abs(diffNormal.x)>0.6f)
-				{
-					_currentMoveDir = MoveDir.None;
-					break;
-				}
-				if (_currentMoveDir == MoveDir.Vertical && Mathf.Abs(diffNormal.y)>0.6f)
-				{
-					_currentMoveDir = MoveDir.None;
-					break;
-				}
+				return true;
 			}
+			if (_pickedDir == Vector3Int.left && !_availableDirEnum.HasFlag(AvailablePaths.Left))
+			{
+				return true;
+			}
+			if (_pickedDir == Vector3Int.right && !_availableDirEnum.HasFlag(AvailablePaths.Right))
+			{
+				return true;
+			}
+			return false;
 		}
+
+		private void GetEmptyDir(Vector3 position)
+		{
+			Vector3Int index = _tilemap.WorldToCell(position);
+
+			if (!_tilemap.HasTile(index + Vector3Int.up))
+			{
+				_availableDirEnum |= AvailablePaths.Up;
+			}
+			else
+			{
+				_availableDirEnum &= ~AvailablePaths.Up;
+			}
+
+			if (!_tilemap.HasTile(index + Vector3Int.down))
+			{
+				_availableDirEnum |= AvailablePaths.Down;
+			}
+			else
+			{
+				_availableDirEnum &= ~AvailablePaths.Down;
+			}
+
+			if (!_tilemap.HasTile(index + Vector3Int.left))
+			{
+				_availableDirEnum |= AvailablePaths.Left;
+			}
+			else
+			{
+				_availableDirEnum &= ~AvailablePaths.Left;
+			}
+
+			if (!_tilemap.HasTile(index + Vector3Int.right))
+			{
+				_availableDirEnum |= AvailablePaths.Right;
+			}
+			else
+			{
+				_availableDirEnum &= ~AvailablePaths.Right;
+			}
+
+		}
+
 		public void KillSelf()
 		{
 			_isAlive = false;
 		}
+		
 	}
 }

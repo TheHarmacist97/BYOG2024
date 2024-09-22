@@ -42,10 +42,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _SquiggleSwapRate: 0.3
-    - _XAmp: 1
-    - _XFreq: 0
-    - _YAmp: 1
+    - _SquiggleSwapRate: 1
+    - _XAmp: 0.05
+    - _XFreq: 21.6
+    - _YAmp: 0.06
+    - _YFreq: 51.5
     m_Colors: []
   m_BuildTextureStacks: []
 --- !u!114 &3404081679400963692

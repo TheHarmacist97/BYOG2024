@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 namespace Pacman
 {
 	[Flags]
-	public enum GhostAvailablePaths
+	public enum AvailablePaths
 	{
 		Up = 1,
 		Down = 2,
@@ -21,8 +21,8 @@ namespace Pacman
 		[SerializeField] private float _speed;
 		[SerializeField] private float _junctionEvaluationPeriod;
 
-		[SerializeField] private GhostAvailablePaths _availableDirEnum;
-		[SerializeField] private GhostAvailablePaths _lastAvailableDirEnum;
+		[SerializeField] private AvailablePaths _availableDirEnum;
+		[SerializeField] private AvailablePaths _lastAvailableDirEnum;
 
 		[SerializeField] private List<Vector3Int> _availableDirections;
 		[SerializeField] private Vector3Int _pickedDir;
@@ -69,7 +69,6 @@ namespace Pacman
 			}
 			else if (_evaluateNextJunction)
 			{
-				Debug.Log("Evaluate next junction");
 				if (_lastAvailableDirEnum != _availableDirEnum)
 				{
 					PickRandomDir();
@@ -102,19 +101,19 @@ namespace Pacman
 
 		private bool Collision()
 		{
-			if (_pickedDir == Vector3Int.up && !_availableDirEnum.HasFlag(GhostAvailablePaths.Up))
+			if (_pickedDir == Vector3Int.up && !_availableDirEnum.HasFlag(AvailablePaths.Up))
 			{
 				return true;
 			}
-			if (_pickedDir == Vector3Int.down && !_availableDirEnum.HasFlag(GhostAvailablePaths.Down))
+			if (_pickedDir == Vector3Int.down && !_availableDirEnum.HasFlag(AvailablePaths.Down))
 			{
 				return true;
 			}
-			if (_pickedDir == Vector3Int.left && !_availableDirEnum.HasFlag(GhostAvailablePaths.Left))
+			if (_pickedDir == Vector3Int.left && !_availableDirEnum.HasFlag(AvailablePaths.Left))
 			{
 				return true;
 			}
-			if (_pickedDir == Vector3Int.right && !_availableDirEnum.HasFlag(GhostAvailablePaths.Right))
+			if (_pickedDir == Vector3Int.right && !_availableDirEnum.HasFlag(AvailablePaths.Right))
 			{
 				return true;
 			}
@@ -138,42 +137,42 @@ namespace Pacman
 
 			if (!_tilemap.HasTile(index + Vector3Int.up))
 			{
-				_availableDirEnum |= GhostAvailablePaths.Up;
+				_availableDirEnum |= AvailablePaths.Up;
 				_availableDirections.Add(Vector3Int.up);
 			}
 			else
 			{
-				_availableDirEnum &= ~GhostAvailablePaths.Up;
+				_availableDirEnum &= ~AvailablePaths.Up;
 			}
 
 			if (!_tilemap.HasTile(index + Vector3Int.down))
 			{
-				_availableDirEnum |= GhostAvailablePaths.Down;
+				_availableDirEnum |= AvailablePaths.Down;
 				_availableDirections.Add(Vector3Int.down);
 			}
 			else
 			{
-				_availableDirEnum &= ~GhostAvailablePaths.Down;
+				_availableDirEnum &= ~AvailablePaths.Down;
 			}
 
 			if (!_tilemap.HasTile(index + Vector3Int.left))
 			{
-				_availableDirEnum |= GhostAvailablePaths.Left;
+				_availableDirEnum |= AvailablePaths.Left;
 				_availableDirections.Add(Vector3Int.left);
 			}
 			else
 			{
-				_availableDirEnum &= ~GhostAvailablePaths.Left;
+				_availableDirEnum &= ~AvailablePaths.Left;
 			}
 
 			if (!_tilemap.HasTile(index + Vector3Int.right))
 			{
-				_availableDirEnum |= GhostAvailablePaths.Right;
+				_availableDirEnum |= AvailablePaths.Right;
 				_availableDirections.Add(Vector3Int.right);
 			}
 			else
 			{
-				_availableDirEnum &= ~GhostAvailablePaths.Right;
+				_availableDirEnum &= ~AvailablePaths.Right;
 			}
 
 		}
