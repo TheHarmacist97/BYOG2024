@@ -61,12 +61,12 @@ Material:
     m_Floats:
     - _Mult: 12
     - _Pixelation: 12
-    - _Progress: 1.003746
+    - _Progress: 1.0078573
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Rows: 5
     - _Subdivisons: 1
     m_Colors:
     - _Aspect: {r: 1.77778, g: 1, b: 0, a: 0}
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 0.5411765, b: 0.33333334, a: 1}
   m_BuildTextureStacks: []
