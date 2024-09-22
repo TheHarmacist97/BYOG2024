@@ -770,6 +770,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 844d78a88aa8ffc43810cb9ed59d8de0, type: 2}
   - {fileID: 11400000, guid: a457364dd6b102d43bbd92c3f87fcba7, type: 2}
   - {fileID: 11400000, guid: 76138fa7bce42e6439093c51f654b90a, type: 2}
+  - {fileID: 11400000, guid: 131e2baf0905f974fbabd3c75e221619, type: 2}
+  - {fileID: 11400000, guid: 2e9efc2a886d9e04abacc59b54cdfa70, type: 2}
+  - {fileID: 11400000, guid: 6f36b10b9f6be294d9f7f6f3b0cdae1c, type: 2}
 --- !u!223 &612190211430623231
 Canvas:
   m_ObjectHideFlags: 0

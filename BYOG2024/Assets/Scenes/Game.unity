@@ -5187,6 +5187,57 @@ PrefabInstance:
       propertyPath: departmentLeavingQTEs.Array.data[2].applicationIcon
       value: 
       objectReference: {fileID: 1924926119}
+    - target: {fileID: 3054155167564710471, guid: cdaf9c73eafe4d742b041bb63a672c15,
+        type: 3}
+      propertyPath: departmentLeavingQTEs.Array.data[0].conversation.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054155167564710471, guid: cdaf9c73eafe4d742b041bb63a672c15,
+        type: 3}
+      propertyPath: departmentLeavingQTEs.Array.data[1].conversation.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054155167564710471, guid: cdaf9c73eafe4d742b041bb63a672c15,
+        type: 3}
+      propertyPath: departmentLeavingQTEs.Array.data[2].conversation.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054155167564710471, guid: cdaf9c73eafe4d742b041bb63a672c15,
+        type: 3}
+      propertyPath: departmentLeavingQTEs.Array.data[0].conversation.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: c9946a97838b68b49931dc2460cb392e,
+        type: 2}
+    - target: {fileID: 3054155167564710471, guid: cdaf9c73eafe4d742b041bb63a672c15,
+        type: 3}
+      propertyPath: departmentLeavingQTEs.Array.data[0].conversation.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 131e2baf0905f974fbabd3c75e221619,
+        type: 2}
+    - target: {fileID: 3054155167564710471, guid: cdaf9c73eafe4d742b041bb63a672c15,
+        type: 3}
+      propertyPath: departmentLeavingQTEs.Array.data[1].conversation.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: d453e9a304267834f92696f9e78f8346,
+        type: 2}
+    - target: {fileID: 3054155167564710471, guid: cdaf9c73eafe4d742b041bb63a672c15,
+        type: 3}
+      propertyPath: departmentLeavingQTEs.Array.data[1].conversation.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6f36b10b9f6be294d9f7f6f3b0cdae1c,
+        type: 2}
+    - target: {fileID: 3054155167564710471, guid: cdaf9c73eafe4d742b041bb63a672c15,
+        type: 3}
+      propertyPath: departmentLeavingQTEs.Array.data[2].conversation.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: b344f46b96e9a0f4fb96ea7f42b70c4c,
+        type: 2}
+    - target: {fileID: 3054155167564710471, guid: cdaf9c73eafe4d742b041bb63a672c15,
+        type: 3}
+      propertyPath: departmentLeavingQTEs.Array.data[2].conversation.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e9efc2a886d9e04abacc59b54cdfa70,
+        type: 2}
     - target: {fileID: 3219221180363160329, guid: cdaf9c73eafe4d742b041bb63a672c15,
         type: 3}
       propertyPath: m_Name

@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [Serializable]
     public class QTEBlock
     {
-        public Conversation conversation;
+        public Conversation[] conversation;
         public QuickTimeEvent qte;
         public ApplicationView applicationIcon;
 
@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour
             {
                 _currentQTE = availableQTEs[Random.Range(0, availableQTEs.Count)];
                 _pausedTimer = true;
-                DialogueManager.Instance.StartConversation(_currentQTE.conversation.conversationID);
+                DialogueManager.Instance.StartConversation(_currentQTE.conversation[Random.Range(0, _currentQTE.conversation.Length)].conversationID);
             }
         }
         else
@@ -183,14 +183,16 @@ public class GameManager : MonoBehaviour
 
         foreach (var qteBlock in departmentLeavingQTEs)
         {
-            if (qteBlock.conversation.conversationID.Equals(conversationID))
+            foreach (var conversation in qteBlock.conversation)
             {
+                if (!conversation.conversationID.Equals(conversationID)) continue;
                 _pausedTimer = false;
                 qteBlock.executed = true;
                 OpenQTEPanel();
                 _taskbar.SetApplication(qteBlock.applicationIcon);
                 qteBlock.qte.StartQTE();
                 qteBlock.qte.onQTECompleted += OnQTEComplete;
+                break;
             }
         }
     }

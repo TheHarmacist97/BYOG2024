@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eff497e54eee49939a3c7bfce51b6fe6, type: 3}
+  m_Name: ProgrammerLeft 2
+  m_EditorClassIdentifier: 
+  conversationID: ProgrammerLeft2
+  dialogues:
+  - speaker: PM
+    dialogueText: '(In the distance..)
+
+      ChatGPT told me that Programming is
+      not needed in this new age.'
+    orientation: 0
+  - speaker: Programmer
+    dialogueText: '(In the distance..)
+
+      <i>Indistinguished Screaming..</i>'
+    orientation: 1
+  - speaker: PM
+    dialogueText: Uhm..yeah..well.. So our programmers aren't with us anymore..
+    orientation: 0
+  - speaker: PM
+    dialogueText: ..for personal reasons
+    orientation: 0
+  - speaker: PM
+    dialogueText: Can you fill in for them and write some code?
+    orientation: 0
+  - speaker: PM
+    dialogueText: ..wasn't a question btw, I want it done yesterday!
+    orientation: 0

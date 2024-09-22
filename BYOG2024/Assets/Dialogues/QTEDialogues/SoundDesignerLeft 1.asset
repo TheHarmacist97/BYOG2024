@@ -10,27 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eff497e54eee49939a3c7bfce51b6fe6, type: 3}
-  m_Name: SoundDesignerLeft
+  m_Name: SoundDesignerLeft 1
   m_EditorClassIdentifier: 
-  conversationID: SoundDesignerLeft
+  conversationID: SoundDesignerLeft1
   dialogues:
   - speaker: Sound Designer
     dialogueText: '(In the distance..)
 
       They asked me to create 200 unique
       footstep sounds for different types of gravel'
-    orientation: 0
+    orientation: 1
   - speaker: Sound Designer
     dialogueText: '(In the distance..)
 
       <shake>How many ways can you walk on
       rocks?!</shake>'
-    orientation: 0
+    orientation: 1
   - speaker: PM
     dialogueText: Oh well.. our sound producers left
     orientation: 0
   - speaker: PM
-    dialogueText: Please finish tis track
+    dialogueText: Please finish this track
     orientation: 0
   - speaker: PM
     dialogueText: Should be quick!

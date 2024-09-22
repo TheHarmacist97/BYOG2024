@@ -10,25 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eff497e54eee49939a3c7bfce51b6fe6, type: 3}
-  m_Name: ProgrammerLeft
+  m_Name: SoundDesignerLeft 2
   m_EditorClassIdentifier: 
-  conversationID: ProgrammerLeft
+  conversationID: SoundDesignerLeft2
   dialogues:
-  - speaker: PM
+  - speaker: Sound Designer
     dialogueText: '(In the distance..)
 
-      What do you mean you have a family,
-      WE are you family!!'
+      What do you mean it sounds like a Vacum
+      Cleaner'
+    orientation: 1
+  - speaker: Sound Designer
+    dialogueText: '(In the distance..)
+
+      <shake>It is Experimental Rock</shake>'
+    orientation: 1
+  - speaker: PM
+    dialogueText: Oh well.. our sound producers left
     orientation: 0
   - speaker: PM
-    dialogueText: Uhm..yeah..well.. So our programmers aren't with us anymore..
+    dialogueText: Please finish this track
     orientation: 0
   - speaker: PM
-    dialogueText: ..for personal reasons
-    orientation: 0
-  - speaker: PM
-    dialogueText: Can you fill in for them and write some code?
-    orientation: 0
-  - speaker: PM
-    dialogueText: ..wasn't a question btw, I want it done yesterday!
+    dialogueText: Should be quick!
     orientation: 0
