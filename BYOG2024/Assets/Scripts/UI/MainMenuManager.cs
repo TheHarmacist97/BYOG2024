@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
+    [SerializeField] private float initialWait = 2f;
     [SerializeField] private Conversation introConversation;
     [SerializeField] private Button jobAcceptBtn;
     [SerializeField] private Transform scrollingPanel;
@@ -17,9 +18,12 @@ public class MainMenuManager : MonoBehaviour
     
     private bool _isPlayed = false;
     private int _escCount = 0;
+    private bool _quit = false;
+    private float _timer;
 
     private void Start()
     {
+        _timer = initialWait;
         jobAcceptBtn.onClick.AddListener(() =>
         {
             OffsetScrollPanel(StartIntroDialogue);
@@ -29,6 +33,9 @@ public class MainMenuManager : MonoBehaviour
 
     private void Update()
     {
+        _timer -= Time.deltaTime;
+        if (_timer > 0)
+            return;
         if (!_isPlayed && Input.GetMouseButtonDown(0))
         {
             OffsetScrollPanel();
@@ -38,7 +45,7 @@ public class MainMenuManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape))
             _escCount++;
         
-        if(_escCount >= 2)
+        if(_escCount >= 2 && !_quit)
             Quit();
     }
 
@@ -69,5 +76,6 @@ public class MainMenuManager : MonoBehaviour
     {
         Debug.Log("Quitting");
         Application.Quit();
+        _quit = true;
     }
 }

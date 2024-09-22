@@ -3527,7 +3527,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _musicAudio
       value: 
-      objectReference: {fileID: 8300000, guid: 4088a5d3fca83fe42a4b3982a2e66a7f, type: 3}
+      objectReference: {fileID: 8300000, guid: c05cd3961cb263645ae18bb9611a6b32, type: 3}
     - target: {fileID: 2436966001215752173, guid: 440b4892d552b604fa6f7798fe2973b0,
         type: 3}
       propertyPath: qteDescription
