@@ -89,11 +89,14 @@ public abstract class QuickTimeEvent : MonoBehaviour
     // Override in child class to initialize QTE
     protected abstract void Initialize();
 
-    protected void QTEComplete()
+    protected void QTEComplete(bool forceQuit = false)
     {
         Debug.Log("Completed QTE");
         _isComplete = true;
-        PopupManager.Instance.ShowPopup(completionPopupText, 3f, ActuallyComplete);
+        if(!forceQuit)
+            PopupManager.Instance.ShowPopup(completionPopupText, 3f, ActuallyComplete);
+        else
+            ActuallyComplete();
     }
 
     void ActuallyComplete()
@@ -124,7 +127,7 @@ public abstract class QuickTimeEvent : MonoBehaviour
     public void ForceComplete()
     {
         _cancellationTokenSource?.Cancel();
-        QTEComplete();
+        QTEComplete(true);
         uiPanel.SetActive(false);
     }
 
