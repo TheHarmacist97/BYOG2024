@@ -96,6 +96,15 @@ namespace UI
                 image.gameObject.SetActive(false);
             }
         }
+        public void HomeButtonClicked()
+        {
+            SceneTransitionManager.Instance.LoadScene("MainMenu");
+        }
+
+        public void RetryButtonClicked()
+        {
+            SceneTransitionManager.Instance.LoadScene("Game");
+        }
         [ContextMenu("Show Game End")]
         public void ShowGameEndContextMenu()
         {
