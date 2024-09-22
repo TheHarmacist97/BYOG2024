@@ -854,10 +854,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialStartDelay: 1.5
+  completionPopupText: Completed...
   totalAllowedTime: Infinity
   totalActionCount: 75
+  qteDescription: 
+  qteID: 
   uiPanel: {fileID: 0}
-  _source: {fileID: 8435650674742996837}
+  qteProgressBar: {fileID: 0}
+  _musicAudio: {fileID: 8300000, guid: c05cd3961cb263645ae18bb9611a6b32, type: 3}
   _currentTime: 0
   _wColor: {r: 1, g: 0.8730529, b: 0.46855342, a: 1}
   _sColor: {r: 0.53144646, g: 1, b: 0.6655932, a: 1}
@@ -871,7 +875,7 @@ MonoBehaviour:
   _keyPrefab: {fileID: 1000113223387950330, guid: 0d2e72a99a344f341982707ec15df85f,
     type: 3}
   _keySpeed: 5
-  _bpm: 128
+  _bpm: 120
   _beatTimeModifier: 1
   _wSpawnPoint: {fileID: 4307297212324966827}
   _sSpawnPoint: {fileID: 510605849541907888}

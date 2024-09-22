@@ -1439,7 +1439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5573ecd73ae87f44a49458edbe9497b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSceneIndex: 1
+  initialWait: 1
   introConversation: {fileID: 11400000, guid: 9d8cc524804977648bc60b0e063d5078, type: 2}
   jobAcceptBtn: {fileID: 1167472752}
   scrollingPanel: {fileID: 73320437}
