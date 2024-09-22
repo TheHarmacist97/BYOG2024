@@ -98,12 +98,12 @@ namespace UI
         }
         public void HomeButtonClicked()
         {
-            SceneTransitionManager.Instance.LoadScene("MainMenu");
+            SceneTransitionManager.Instance.LoadScene(0);
         }
 
         public void RetryButtonClicked()
         {
-            SceneTransitionManager.Instance.LoadScene("Game");
+            SceneTransitionManager.Instance.LoadScene(1);
         }
         [ContextMenu("Show Game End")]
         public void ShowGameEndContextMenu()
