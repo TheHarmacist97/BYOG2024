@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using DG.Tweening;
 using Dialogue;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -65,8 +67,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Start()
     {
-        // _timeLeft = maxGameTime;
-        _timeLeft = 10f;
+        _timeLeft = maxGameTime;
         DrawingManager.Instance.DrawingCompleted += OnDrawingCompleted;
         DrawingManager.Instance.AllDrawingsCompleted += OnAllDrawingsCompleted;
         DialogueManager.Instance.OnDialogueEnded += OnDialogueEnded;
@@ -92,44 +93,54 @@ public class GameManager : MonoBehaviour
                 timerText.text = "00:00";
                 timerProgressBar.ResetTimer();
                 // GAME OVER STUFF
-                TimerOver();
+                GameOver();
+                //TODO Different Dialogue
+                DialogueManager.Instance.StartConversation(allDrawingsCompletedConversationID);
             }
         }
     }
 
-    private void TimerOver()
+    private void GameOver()
     {
         //Force Complete all QTEs
-        float completionPercentage = 0f;
-        float successPercentage = 0f;
-        float failurePercentage = 0f;
 
+        float overallSuccessRate = 0f;
+        float programmingSuccessRate = 0f;
+        float soundSuccessRate = 0f;
+        
         foreach (var qteBlock in departmentLeavingQTEs)
         {
-            completionPercentage += qteBlock.qte.GetCompletionPercentage();
-            successPercentage += qteBlock.qte.GetSuccessPercentage();
-            failurePercentage += qteBlock.qte.GetFailurePercentage();
-
             qteBlock.qte.ForceComplete();
             qteBlock.executed = true;
+            switch(qteBlock.qte.ID)
+            {
+                case "programmingqte":
+                    overallSuccessRate += qteBlock.qte.GetSuccessPercentage();
+                    programmingSuccessRate = qteBlock.qte.GetSuccessPercentage();
+                    break;
+                case "soundqte":
+                    overallSuccessRate += qteBlock.qte.GetSuccessPercentage();
+                    soundSuccessRate = qteBlock.qte.GetSuccessPercentage();
+                    break;
+            }
         }
 
-        completionPercentage += DrawingManager.Instance.GetCompletionPercentage();
-        completionPercentage /= departmentLeavingQTEs.Length + 1;
-        successPercentage /= departmentLeavingQTEs.Length;
-        failurePercentage /= departmentLeavingQTEs.Length;
-
-        Debug.Log(
-            $"Time Over\n Completion: {completionPercentage},\n Success: {successPercentage},\n Failure: {failurePercentage}");
-
+        overallSuccessRate += DrawingManager.Instance.GetCompletionPercentage();
+        overallSuccessRate /= 3;
+        Debug.Log($"Timer Over: {overallSuccessRate}\n Programming: {programmingSuccessRate}\n Sound: {soundSuccessRate}");
+        
+        
+        PacmanConfig.OverallSuccessRate = overallSuccessRate;
+        PacmanConfig.ProgrammingSuccess = programmingSuccessRate;
+        PacmanConfig.SoundSuccess = soundSuccessRate;
         _taskbar.ResetApplication();
-        DialogueManager.Instance.StartConversation(allDrawingsCompletedConversationID);
     }
 
     private void OnAllDrawingsCompleted()
     {
         Debug.Log("All drawings completed");
         _pausedTimer = true;
+        GameOver();
         DialogueManager.Instance.StartConversation(allDrawingsCompletedConversationID);
     }
 
