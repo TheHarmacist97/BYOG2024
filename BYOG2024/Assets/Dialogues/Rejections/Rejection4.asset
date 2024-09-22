@@ -17,4 +17,4 @@ MonoBehaviour:
   - speaker: PM
     dialogueText: "Let\u2019s treat this as the MVP and aim for something more polished
       in version 2."
-    orientation: 0
+    orientation: 1

@@ -16,4 +16,4 @@ MonoBehaviour:
   dialogues:
   - speaker: PM
     dialogueText: "It\u2019s almost perfect! Just remove everything and start again."
-    orientation: 0
+    orientation: 1

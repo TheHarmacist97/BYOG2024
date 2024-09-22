@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Dialogue;
@@ -21,6 +22,11 @@ public class GameManager : MonoBehaviour
     
     [SerializeField]
     private QTEBlock[] departmentLeavingQTEs;
+    [Header("Conversations")]
+    [SerializeField]
+    private string startConversationID;
+    [SerializeField]
+    private string allDrawingsCompletedConversationID;
 
     [SerializeField]
     private Taskbar _taskbar;
@@ -40,19 +46,22 @@ public class GameManager : MonoBehaviour
     private float _qtePanelYPosition;
     private float _timeLeft;
     private bool _timeOver = false;
+    private bool _pausedTimer = false;
 
-    private void Start()
+    private IEnumerator Start()
     {
         _timeLeft = maxGameTime;
-        DrawingManager.Instance.StartDrawing();
         DrawingManager.Instance.DrawingCompleted += OnDrawingCompleted;
         DrawingManager.Instance.AllDrawingsCompleted += OnAllDrawingsCompleted;
         DialogueManager.Instance.OnDialogueEnded += OnDialogueEnded;
+        _pausedTimer = true;
+        yield return null;
+        DialogueManager.Instance.StartConversation(startConversationID);
     }
 
     private void Update()
     {
-        if (!_timeOver)
+        if (!_timeOver && !_pausedTimer)
         {
             _timeLeft -= Time.deltaTime;
             int minutes = Mathf.FloorToInt(_timeLeft / 60F);
@@ -74,7 +83,8 @@ public class GameManager : MonoBehaviour
     private void OnAllDrawingsCompleted()
     {
         Debug.Log("All drawings completed");
-        SceneManager.LoadScene(3);
+        _pausedTimer = true;
+        DialogueManager.Instance.StartConversation(allDrawingsCompletedConversationID);
     }
 
     void OnDrawingCompleted(int index)
@@ -91,6 +101,7 @@ public class GameManager : MonoBehaviour
             if (availableQTEs.Count > 0)
             {
                 _currentQTE = availableQTEs[Random.Range(0, availableQTEs.Count)];
+                _pausedTimer = true;
                 DialogueManager.Instance.StartConversation(_currentQTE.conversation.conversationID);
             }
         }
@@ -102,10 +113,23 @@ public class GameManager : MonoBehaviour
 
     void OnDialogueEnded(string conversationID)
     {
+
+        if (conversationID.Equals(startConversationID))
+        {
+            DrawingManager.Instance.StartDrawing();
+            _pausedTimer = false;
+            return;
+        }
+        if(conversationID.Equals(allDrawingsCompletedConversationID))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            return;
+        }
         foreach (var qteBlock in departmentLeavingQTEs)
         {
             if (qteBlock.conversation.conversationID.Equals(conversationID))
             {
+                _pausedTimer = false;
                 qteBlock.executed = true;
                 OpenQTEPanel();
                 _taskbar.SetApplication(qteBlock.applicationIcon);

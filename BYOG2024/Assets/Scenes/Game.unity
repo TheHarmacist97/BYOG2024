@@ -4930,8 +4930,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3054155167564710471, guid: cdaf9c73eafe4d742b041bb63a672c15,
         type: 3}
+      propertyPath: startConversationID
+      value: startConversation
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054155167564710471, guid: cdaf9c73eafe4d742b041bb63a672c15,
+        type: 3}
       propertyPath: departmentLeavingQTEs.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054155167564710471, guid: cdaf9c73eafe4d742b041bb63a672c15,
+        type: 3}
+      propertyPath: allDrawingsCompletedConversationID
+      value: allDialoguesCompleted
       objectReference: {fileID: 0}
     - target: {fileID: 3054155167564710471, guid: cdaf9c73eafe4d742b041bb63a672c15,
         type: 3}
@@ -5865,7 +5875,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 6680924927248674940}
   m_OnClick:
     m_PersistentCalls:
@@ -8206,7 +8216,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 938667102165847055}
   m_OnClick:
     m_PersistentCalls:

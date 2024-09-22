@@ -40,10 +40,6 @@ namespace Dialogue
             {
                 Destroy(gameObject);
             }
-        }
-
-        private void Start()
-        {
             _conversations = new Dictionary<string, Conversation>();
             _dialogueSequencer = new DialogueSequencer(this, leftDialogue, rightDialogue);
             
@@ -51,6 +47,7 @@ namespace Dialogue
             {
                 _conversations.TryAdd(conversation.conversationID, conversation);
             }
+
         }
 
         public void StartConversation(string conversationKey)
