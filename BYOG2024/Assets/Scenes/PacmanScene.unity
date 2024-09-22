@@ -51684,8 +51684,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bbd1b37b3185c346becc5360b4fa34a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchMatGhost: {fileID: 0}
-  _glitchMatPacman: {fileID: 0}
+  _glitchMatGhost: {fileID: 2100000, guid: 9ded0ab11d66da74e825b3a50f8fc0b6, type: 2}
+  _glitchMatPacman: {fileID: 2100000, guid: 8de2851d13c23994abd2022ad1a5abbc, type: 2}
   _perfectSoundDesign: {fileID: 8300000, guid: ce752db4ca4ec6247bcdd28fded65baa, type: 3}
   _ehSoundDesign: {fileID: 8300000, guid: b498a17c7e4a9554d9e503ad24b0d856, type: 3}
   _badSoundDesign: {fileID: 8300000, guid: 5bf1f366eb284644cacfb0dd4bfb8efe, type: 3}
