@@ -1,12 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using DG.Tweening;
 using Dialogue;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
 
@@ -179,7 +177,7 @@ public class GameManager : MonoBehaviour
 
         if (conversationID.Equals(allDrawingsCompletedConversationID))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneTransitionManager.Instance.LoadNextScene();
             return;
         }
 

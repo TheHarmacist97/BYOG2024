@@ -7,13 +7,10 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
-    guid: 611192d4c2b6f144aa293c551dcec9cb
+    guid: 643686ffffb0c6a4698f3fca322cf4b8
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
-    path: Assets/Scenes/SanchithScene.unity
-    guid: e99a1c562dea0fe4494760a15ea910b6
   - enabled: 1
     path: Assets/Scenes/PacmanScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02

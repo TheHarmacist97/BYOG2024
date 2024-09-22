@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
@@ -24,8 +23,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private Button tutorialPrevButton;
     [SerializeField] private Button tutorialNextButton;
     
-    private int _currentTutorialIndex = 0;
-    private List<GameObject> _tutorials = new List<GameObject>();
+    private int _currentTutorialIndex;
+    private readonly List<GameObject> _tutorials = new List<GameObject>();
 
     private void Start()
     {
@@ -52,7 +51,7 @@ public class MainMenuManager : MonoBehaviour
     
     private void Play()
     {
-        SceneManager.LoadScene(gameSceneName);
+        SceneTransitionManager.Instance.LoadNextScene();
     }
 
     private void ShowOptionsMenu()
