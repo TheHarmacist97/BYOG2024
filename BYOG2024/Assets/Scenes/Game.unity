@@ -6969,7 +6969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialStartDelay: 0.5
-  completionPopupText: Completed...
+  completionPopupText: Printing document...
   totalAllowedTime: 45
   totalActionCount: 10
   qteDescription: Be creative
@@ -10366,7 +10366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialStartDelay: 1.5
-  completionPopupText: Completed...
+  completionPopupText: Compiling code...
   totalAllowedTime: 45
   totalActionCount: 25
   qteDescription: Complete the code
