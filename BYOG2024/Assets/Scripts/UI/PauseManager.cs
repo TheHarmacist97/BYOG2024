@@ -1,6 +1,5 @@
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
@@ -54,6 +53,6 @@ public class PauseManager : MonoBehaviour
     private void MainMenu()
     {
         Time.timeScale = 1f;
-        SceneTransitionManager.Instance.LoadScene(menuSceneIndex);
+        SceneTransitionManager.Instance.LoadHomeScene();
     }
 }

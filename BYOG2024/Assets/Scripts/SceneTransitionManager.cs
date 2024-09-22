@@ -107,4 +107,10 @@ public class SceneTransitionManager : MonoBehaviour
     {
         StartCoroutine(LoadSceneAfterWipe(SceneManager.GetActiveScene().buildIndex + 1));
     }
+
+    public void LoadHomeScene()
+    {
+        PacmanConfig.PurgeConfig();
+        StartCoroutine(LoadSceneAfterWipe(0));
+    }
 }

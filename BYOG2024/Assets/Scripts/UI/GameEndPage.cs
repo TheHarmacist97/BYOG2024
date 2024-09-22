@@ -106,11 +106,12 @@ namespace UI
         }
         public void HomeButtonClicked()
         {
-            SceneTransitionManager.Instance.LoadScene(0);
+            SceneTransitionManager.Instance.LoadHomeScene();
         }
 
         public void RetryButtonClicked()
         {
+            PacmanConfig.PurgeConfig();
             SceneTransitionManager.Instance.LoadScene(1);
         }
         [ContextMenu("Show Game End")]
