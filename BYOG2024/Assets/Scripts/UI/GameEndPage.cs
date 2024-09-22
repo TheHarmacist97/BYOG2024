@@ -56,6 +56,7 @@ namespace UI
 
         private void CalculateScore()
         {
+            _scoreFillImage.fillAmount = 0f;
             var overallScore = PacmanConfig.OverallSuccessRate;
             _currentScoreText.SetText($"{overallScore * 10f:F1}");
             _scoreFillImage.DOFillAmount(overallScore, transitionTime).SetEase(transitionEase);
