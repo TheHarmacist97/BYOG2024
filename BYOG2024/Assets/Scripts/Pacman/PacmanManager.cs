@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 namespace Pacman
 {
@@ -22,6 +22,8 @@ namespace Pacman
         [SerializeField] private GhostAI _ghostAI1, _ghostAI2, _ghostAI3;
         [SerializeField] private int _currentScore;
         [SerializeField] private int _totalPellets, _currentPellets;
+
+        [SerializeField] private GameEndPage _gameEndPage;
         private float _currentTime;
 
         private void Awake()
@@ -47,7 +49,6 @@ namespace Pacman
         }
         private void SkinPacman()
         {
-
             _pacman._spriteRenderer.sprite = PacmanConfig.Drawings.GetValueOrDefault(PictureIDs.Pacman, _defaultSprite);
             _ghostAI1._spriteRenderer.sprite = PacmanConfig.Drawings.GetValueOrDefault(PictureIDs.Ghost1, _defaultSprite);
             _ghostAI2._spriteRenderer.sprite = PacmanConfig.Drawings.GetValueOrDefault(PictureIDs.Ghost2, _defaultSprite);
@@ -82,17 +83,24 @@ namespace Pacman
             _ghostAI1._gameOver = true;
             _ghostAI2._gameOver = true;
             _ghostAI3._gameOver = true;
+            GameOver();
         }
 
         public void PelletEaten()
         {
+            _currentPellets++;
             _currentScore += _pelletScoreIncrement;
-            
+            if (_currentPellets >= _totalPellets)
+            {
+                AllPelletsEaten();
+            }
         }
 
         public void GameOver()
         {
+            Debug.Log("Game Over");
             _gameOver = true;
+            _gameEndPage.ShowGameEnd();
         }
     }
 }
