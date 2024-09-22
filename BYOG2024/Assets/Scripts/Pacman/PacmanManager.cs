@@ -56,6 +56,14 @@ namespace Pacman
             {
                 AudioManager.instance.PlayMusic(_badSoundDesign, 1f);
             }
+
+            if (PacmanConfig.ProgrammingSuccess < 0.7)
+            {
+                _pacman._spriteRenderer.material = _glitchMatPacman;
+                _ghostAI1._spriteRenderer.material = _glitchMatGhost;
+                _ghostAI2._spriteRenderer.material = _glitchMatGhost;
+                _ghostAI3._spriteRenderer.material = _glitchMatGhost;
+            }
             
             _totalPellets = _pelletUtil.GetPelletCount();
             _currentPellets = 0;
