@@ -44,6 +44,11 @@ namespace Pacman
 				_pellets.Add(t.gameObject.GetComponent<Pellet>());
 			}
 		}
+
+		public int GetPelletCount()
+		{
+			return _pellets.Count;
+		}
 		public void SkinPellets(Sprite sprite)
 		{
 			foreach (Pellet pellet in _pellets)

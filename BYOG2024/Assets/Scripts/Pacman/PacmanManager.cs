@@ -6,6 +6,10 @@ namespace Pacman
     public class PacmanManager : MonoBehaviour
     {
         public static PacmanManager Instance;
+        
+        [SerializeField] private Material _glitchMatGhost;
+        [SerializeField] private Material _glitchMatPacman;
+        //[SerializeField] private 
         [SerializeField] private bool _gameOver;
         [SerializeField] private int _pelletScoreIncrement;
         [SerializeField] private float _timeToComplete;
@@ -15,6 +19,7 @@ namespace Pacman
         [SerializeField] private PacmanLogic _pacman;
         [SerializeField] private GhostAI _ghostAI1, _ghostAI2, _ghostAI3;
         [SerializeField] private int _currentScore;
+        [SerializeField] private int _totalPellets, _currentPellets;
         private float _currentTime;
 
         private void Awake()
@@ -32,12 +37,20 @@ namespace Pacman
         // Start is called before the first frame update
         void Start()
         {
+            SkinPacman();
+
+            _totalPellets = _pelletUtil.GetPelletCount();
+            _currentPellets = 0;
+            _currentTime = _timeToComplete;
+        }
+        private void SkinPacman()
+        {
+
             _pacman._spriteRenderer.sprite = PacmanConfig.Drawings.GetValueOrDefault(PictureIDs.Pacman, _defaultSprite);
             _ghostAI1._spriteRenderer.sprite = PacmanConfig.Drawings.GetValueOrDefault(PictureIDs.Ghost1, _defaultSprite);
             _ghostAI2._spriteRenderer.sprite = PacmanConfig.Drawings.GetValueOrDefault(PictureIDs.Ghost2, _defaultSprite);
             _ghostAI3._spriteRenderer.sprite = PacmanConfig.Drawings.GetValueOrDefault(PictureIDs.Food, _defaultSprite);
             _pelletUtil.SkinPellets(PacmanConfig.Drawings.GetValueOrDefault(PictureIDs.Food, _defaultSprite));
-            _currentTime = _timeToComplete;
         }
 
         private void Update()
@@ -61,7 +74,7 @@ namespace Pacman
             GameOver();
         }
 
-        public void PelletsEaten()
+        public void AllPelletsEaten()
         {
             _pacman.KillSelf();
             _ghostAI1._gameOver = true;

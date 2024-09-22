@@ -116,11 +116,12 @@ namespace Pacman
 		}
 		private void OnCollisionWithGhost(Collision2D other)
 		{
-			if (other.gameObject.layer != LayerMask.NameToLayer("Ghost"))
+			if (other.gameObject.layer != LayerMask.NameToLayer("Pellet"))
 			{
 				return;
 			}
-			_isAlive = false;
+			PacmanManager.Instance.PelletEaten();
+			
 		}
 
 		private bool Collision()
