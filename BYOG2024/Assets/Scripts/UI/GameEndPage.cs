@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,6 +34,12 @@ namespace UI
         [SerializeField]
         private TextMeshProUGUI _currentScoreText;
 
+        [Header("Transition")] [SerializeField]
+        private float transitionTime = 0.8f;
+        [SerializeField]
+        private Ease transitionEase = Ease.InOutBack;
+        
+
         [SerializeField]
         private Image _scoreFillImage;
 
@@ -51,7 +58,7 @@ namespace UI
         {
             var overallScore = PacmanConfig.OverallSuccessRate;
             _currentScoreText.SetText($"{overallScore * 10f:F1}");
-            _scoreFillImage.fillAmount = overallScore;
+            _scoreFillImage.DOFillAmount(overallScore, transitionTime).SetEase(transitionEase);
         }
 
         private void SetReview()
