@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadeInRate: 1
   _fadeOutRate: 1
-  _wipeMaterial: {fileID: 2100000, guid: 79aad3c530fc1974a9e7754d55b765e0, type: 2}
+  _wipeMaterial: {fileID: 6548337108733931268}
 --- !u!1 &8181134610674606639
 GameObject:
   m_ObjectHideFlags: 0
